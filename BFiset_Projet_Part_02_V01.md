@@ -87,18 +87,17 @@ allDataset  <- TCGA_SampleDict[,c("File.Name","BarCode")]
 #### Exemple de contenu suite au filtre:
 
 ```r
-kable(tumorSubset[1:5,],"simple")
+kable(tumorSubset[1:5,])
+```
+```
+File.Name	                                            BarCode
+d1489e83-a47f-4d2e-b330-c0698b1ccc27.htseq.counts.gz	HNSC.CV.A45V.01A
+f38a09f0-50e3-45c9-92a2-18e7639bfd6f.htseq.counts.gz	HNSC.H7.7774.01A
+352b68d8-a9a2-4210-9f28-071b777654c0.htseq.counts.gz	HNSC.CQ.A4CG.01A
+537d05c7-a7d0-48ab-aae0-90fde055a277.htseq.counts.gz	HNSC.CV.5970.01A
+3bdbc229-cbc8-401b-836c-90e76ff3866b.htseq.counts.gz	LUSC.94.7943.01A
 ```
 
-
-
-File.Name                                              BarCode          
------------------------------------------------------  -----------------
-d1489e83-a47f-4d2e-b330-c0698b1ccc27.htseq.counts.gz   HNSC.CV.A45V.01A 
-f38a09f0-50e3-45c9-92a2-18e7639bfd6f.htseq.counts.gz   HNSC.H7.7774.01A 
-352b68d8-a9a2-4210-9f28-071b777654c0.htseq.counts.gz   HNSC.CQ.A4CG.01A 
-537d05c7-a7d0-48ab-aae0-90fde055a277.htseq.counts.gz   HNSC.CV.5970.01A 
-3bdbc229-cbc8-401b-836c-90e76ff3866b.htseq.counts.gz   LUSC.94.7943.01A 
 
 ***
 #### Sauvegarde des fichiers d’échantillons par type:
