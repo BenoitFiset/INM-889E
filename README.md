@@ -12,7 +12,7 @@ Repo pour le cours INM 889E - Projet de ML
   + Le regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs
   + Le regroupement des fichiers individuels en une matrice unifié de comptes - Normale
   + Entrainement des modèles
-  + “Tuning: des modèles
+  + “Tuning" des modèles
   + Prediction des modèles 
 
 * Sur le l’ordinateur local:
@@ -30,10 +30,10 @@ Repo pour le cours INM 889E - Projet de ML
 # 7 Sections pour ce projet
   + Section 1 - [Sélection et Téléchargement des fichiers TCGA](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_01_V01.md)
   + Section 2 - [Pré-Traitement des fichiers (Regroupement des fichiers comptes)](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_02_V01.md)
-    + Bonus -      
   + Section 3 - [Pré-Traitement des fichiers (Filtrage, Découpe, Normalisation, Corrélation](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_02_V01.md)
+    + Bonus - [Autres Normalistions: Aucune et ln()]
   + Section 5 - [Entrainement]
-    + Bonus - 
+    + Bonus - [Comparaison des performances de 6 algorithmes de ML avec les différentes normalisations des données:]
   + Section 6 - [Prédictions]
   + Section 7 - [Résultats]
 
