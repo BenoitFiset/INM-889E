@@ -135,15 +135,26 @@ head(f_files)
 [6] "./UnzippedFiles/00f32c8e-2a91-485b-99c9-6e2e22addec1.htseq.counts.tsv"
 ```
 
-#### Les fichier de compte sgénétique sont en format .tsv et le nom du fichier dans le « Sample Sheet » est en format .gz donc pour pouvoir retrouver le ficher dans le dictionnaire de référence « File.Name et BarCode » doit créer un référence des fichiers lu sur le disque et avoir la même référence .tsv - .gz
+#### Les fichier de comptes génétique sont en format .tsv et le nom du fichier dans le « Sample Sheet » est en format .gz donc pour pouvoir retrouver le ficher dans le dictionnaire de référence « File.Name et BarCode » doit créer un référence des fichiers lu sur le disque et avoir la même référence .tsv - .gz
 
 ```r
 originalFilename <- data.frame(FilenameOnDisk=f_files,FileName=str_replace(str_replace(f_files,locationOfFiles,""),".tsv",".gz"))
+```
 
+```
+kable(originalFilename[1:5,1:2],"rst")
+
+FilenameOnDisk                                                          FileName                                              
+----------------------------------------------------------------------  ------------------------------------------------------
+./UnzippedFiles/00068002-f4f0-4610-bfe6-67169c760d21.htseq.counts.tsv   /00068002-f4f0-4610-bfe6-67169c760d21.htseq.counts.gz 
+./UnzippedFiles/0056ef0b-ecb9-443e-a694-1c0797a21e5c.htseq.counts.tsv   /0056ef0b-ecb9-443e-a694-1c0797a21e5c.htseq.counts.gz 
+./UnzippedFiles/0063c2da-4f47-4974-afea-03b4cdb21e33.htseq.counts.tsv   /0063c2da-4f47-4974-afea-03b4cdb21e33.htseq.counts.gz 
+./UnzippedFiles/007d074e-3b7c-484b-b757-1a60e1172506.htseq.counts.tsv   /007d074e-3b7c-484b-b757-1a60e1172506.htseq.counts.gz 
+./UnzippedFiles/00bed789-1573-4f1a-bc93-4ace31a32a6a.htseq.counts.tsv   /00bed789-1573-4f1a-bc93-4ace31a32a6a.htseq.counts.gz 
+```
 
 
 <!-- # ```{r pressure, echo=FALSE} -->
 <!-- # plot(pressure) -->
 <!-- # ``` -->
 <!-- Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. -->
-```
