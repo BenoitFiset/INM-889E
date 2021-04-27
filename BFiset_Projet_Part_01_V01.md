@@ -18,22 +18,22 @@ Page Principal de Genomic Data Commons Data Portal
 Page du “Repository” qui permet de faire sélection des fichiers
 d’intérêt
 
-![](figures/NIH_Repo_01.png)
+![](./figures/NIH_Repo_01.png)
 
 -----
 
 Il y a plusieurs méthodes pour faire le choix des fichiers à
 télécharger. L’une d’elle est de faire des choix via les “click box”.
 
-![](figures/NIH_Repo_BoxSearch_01.png)
+![](./figures/NIH_Repo_BoxSearch_01.png)
 
 -----
 
 Ma préféré est via une requête (query) dans “Advance Search”
 
-![](figures/NIH_Repo_ASearch_01.png)
+![](./figures/NIH_Repo_ASearch_01.png)
 
-![](figures/NIH_Repo_ASearch_02.png)
+![](./figures/NIH_Repo_ASearch_02.png)
 
 -----
 
