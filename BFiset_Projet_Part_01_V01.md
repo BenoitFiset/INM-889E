@@ -11,7 +11,7 @@ Data Commons Data Portal qui se trouve ici:
 
 Page Principal de Genomic Data Commons Data Portal
 
-![](figures/NIH_Main_01.png)
+![](./figures/NIH_Main_01.png)
 
 -----
 
