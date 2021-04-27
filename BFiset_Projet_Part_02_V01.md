@@ -12,9 +12,9 @@ output:
 
 
 
-<center>
+<p align="center">
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
-</center>
+</p>
 
 **Note:  Le jeu de donnés d’échantillons Normale sera utilisé pour tester les prédictions des modèle. Ici le modèle fera des prédictions sur le type de cancer HNSC vs LUSC et non “Tumeur” vs “Normale”. Le jeu de donnés Normale comporte le type de cancer HNSC et LUSC dans son metadata.**
 
@@ -40,9 +40,9 @@ output:
 ***
 ## Sur le serveur HPC:
 
-<center>
+<p align="center">
 ### Le regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs er Normale
-</center>
+</p>
 
 
 ```r
