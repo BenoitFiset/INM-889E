@@ -433,7 +433,7 @@ dim(trainingDataset.df)
 
 ***
 
-## Compte final 
+## Compte final
 
 ### Décompte des échantillons qui serviront pour l’entrainement et les tests des modèles du projet par type d'échantillion
 
