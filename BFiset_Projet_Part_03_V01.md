@@ -240,6 +240,9 @@ LUSC.66.2781.01A  LUSC                4255                5514                11
 
 
 ```r
+# Percent of samples to select for training
+percentForTraining = 0.8 
+
 # Random Select percentForTraining for training DataSet
 trainingDataSelect <- sample(1:nrow(df.data), size = percentForTraining * nrow(df.data))
 ```
