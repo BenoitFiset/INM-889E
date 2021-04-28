@@ -32,7 +32,7 @@ Repo pour le cours INM 889E - Projet de ML
   + Section 2 - [Pré-Traitement des fichiers (Regroupement des fichiers comptes)](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_02_V01.md)
   + Section 3 - [Pré-Traitement des fichiers (Filtrage, Découpe, Normalisation, Corrélation) ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md)
     + Lien Rapide: [Filtrage des données: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-g%C3%A8nes-qui-on-plus-de-95-de-0-comme-compte![image](https://user-images.githubusercontent.com/33760704/116473750-991daa00-a845-11eb-9eba-d2da0ca42a14.png)
-    + Lien Rapide: [Colonne d'idenfication du Type de l’échantillon]
+    + Lien Rapide: [Colonne d'idenfication du Type de l’échantillon](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#ajouter-dune-colonne-pour-identifier-le-type-de-l%C3%A9chantillon)
     + Lien Rapide: [Découpage Training / Test: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#decoupage-de-des-donnees-en-80-training-et-20-test)
     + Lien Rapide: [Normalisation VST: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#normalisation-avec-vst-de-deseq2)
     + Lien Rapide: [Filtrage des ind. corrélation: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-%C3%A9chantillons-qui-ont-un-coefficient-de-corr%C3%A9lation-de-plus-de-98![image](https://user-images.githubusercontent.com/33760704/116473933-d5510a80-a845-11eb-9f89-95bce6ce3d52.png)
