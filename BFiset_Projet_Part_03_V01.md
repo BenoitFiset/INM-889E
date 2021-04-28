@@ -433,7 +433,9 @@ dim(trainingDataset.df)
 
 ***
 
-## Voici le compte final des échantillons qui serviront pour l’entrainement et les tests des modèles du projet post tous les filtrages.
+## Compte final 
+
+### Décompte des échantillons qui serviront pour l’entrainement et les tests des modèles du projet par type d'échantillion
 
 ![](figures/Final_Count_DataSets_01.png)
 
