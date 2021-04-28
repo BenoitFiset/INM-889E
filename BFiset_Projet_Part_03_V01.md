@@ -13,7 +13,7 @@ output:
 
 ***
 
-## Sur le ordinateur personnel:
+## Sur l'ordinateur personnel:
 
 ### But de la section: Filtrage, Découpe ("Training / Test sets"), Normalisation, Indice de Corrélation - Tumeurs et Normale
 
@@ -57,7 +57,9 @@ ENSG00000000457.12               228               241              3026        
 ENSG00000000460.15               229               297              3479               820               577
 ==================  ================  ================  ================  ================  ================
 ```
+\
 
+#### Filtrage des gènes qui on plus de 95% de 0 comme compte. 
 
 ```r
 percentFilterZero = 95
@@ -69,7 +71,9 @@ percentZeros.df <- data.frame(PercentZero=percentZerosCount, TotalZero=apply(raw
 
 kable(percentZeros.df[order(-percentZeros.df$PercentZero)[2200:2210],],format = "rst")
 ```
+\
 
+#### Un exemple de genes qui sont tous a 0. Il y à 1002 echantilions et la colonne "TotalZero" qui a une valeur de 1002 montre que tous les èchantillions de ce gène sont a 0.
 ```
 =================  ===========  =========
 \                  PercentZero  TotalZero
@@ -87,6 +91,9 @@ ENSG00000199782.1      99.9002       1001
 ENSG00000199870.1      99.9002       1001
 =================  ===========  =========
 ```
+\
+
+#### Dans ce graph, suivant, des distibution des comptes des gènes, nous povons voir qu'il y a beaucoup de gènes (100%) qui ont un compte de 0. Donc enlevons de la ligne rouge "95%" et plus.
 
 
 ```r
@@ -97,7 +104,9 @@ ggplot(data=percentZeros.df,aes(x=percentZerosCount)) +  geom_histogram(binwidth
 ```
 
 ![](figures/Plot_95_01.png)
+\
 
+#### Filtrage des gènes qui ont moins de 1% de comptes pour tout les èchantillions.
 
 ```r
 # Filter Genes that have less than 1% of counts
@@ -105,31 +114,42 @@ geneMinCount = round((0.01 * ncol(rawCountData)))
 
 # Find the Min Gene count of that Gene
 minGeneCount <- apply(rawCountData, 1, min) 
-
-# Create a TRUE / FALSE where TRUE is to remove that Gene
-toFilterGenes <- (percentZerosCount > percentFilterZero) | (minGeneCount < geneMinCount) 
-table(toFilterGenes)
 ```
 
+#### Selection des gènes qui rencontrent les critères de filtrage du +95% et -1% de comptes
+
+```r
+# Create a TRUE / FALSE where TRUE is to remove that Gene
+toFilterGenes <- (percentZerosCount > percentFilterZero) | (minGeneCount < geneMinCount)
+```
+
+#### La table des resultats des filtres. La colonne TRUE (ne rencontre pas les Critères de filtrage) est le nombre de gènes à enlever. La colonne FALSE (ne rencontre pas les Critèresde filtrage) est le nombre de gènes à garder
+
+```r
+table(toFilterGenes)
+```
 ```
 toFilterGenes
 FALSE  TRUE 
 11061 49422 
 ```
+\
 
+#### Inversion pour que TRUE = Garder gènes  et FALSE = Enlever gènes 
 
 ```r
 # Reverse the TRUE / FALSE to put TRUE to keep the good Genes
 filteredGenes <- !toFilterGenes 
 table(filteredGenes)
 ```
-
 ```
 filteredGenes
 FALSE  TRUE 
 49422 11061 
 ```
+\
 
+#### Compte de gènes avant d'appliquer le filtrage 
 
 ```r
 dim(rawCountData)
@@ -137,19 +157,27 @@ dim(rawCountData)
 ```
 [1] 60483  1002
 ```
+\
 
+####  Appliquer le filtrage 
 
 ```r
 # This Filters the genes taht don't pass the more tnat 95% 0 and have less that 1% of counts.
 cleanCountData <- rawCountData[filteredGenes, ]
+```
+\
 
+#### Compte de gènes après le filtrage 
+
+```r
 dim(cleanCountData)
 ```
-
 ```
 [1] 11061  1002
 ```
+\
 
+#### Ici nous allons ajouter une colonne pour identifier le Type de l’échantillon.  Ceci est nécessaire pour l’entrainement des modèles de machine learning.
 
 ```r
 # Function to return a substring, here the 4 first chars of the string sent as parameter (Ex: HNSC, LUSC)
@@ -158,6 +186,9 @@ substrColName = function(x){ substr(x,1,4) }
 cleanCountDataMat <- as.matrix(cleanCountData)
 kable(cleanCountDataMat[495:505,1:6],"rst")
 ```
+
+#### Avant l'ajout de la colonne Type
+
 ```
 ==================  ================  ================  ================  ================  ================  ================
 \                   LUSC.56.7823.01B  LUSC.33.4538.01A  LUSC.34.2608.01A  LUSC.XC.AA0X.01A  HNSC.BA.A4II.01A  HNSC.DQ.5629.01A
@@ -182,6 +213,7 @@ df.data <- data.frame(Type=apply(as.matrix(rownames(t(cleanCountDataMat))),1,sub
 kable(df.data[495:505,1:6],"rst")
 ```
 
+#### Après l'ajout de la colonne Type
 ```
 ================  ====  ==================  ==================  ==================  ==================  ==================
 \                 Type  ENSG00000000003.13  ENSG00000000419.11  ENSG00000000457.12  ENSG00000000460.15  ENSG00000000938.11
@@ -224,8 +256,12 @@ dim(testDataset.df)
 kable(testDataset.df[107:117,1:6],"rst")
 ```
 
+***
 
 ## Normalisation avec VST de DESeq2
+\
+
+#### Normalisation VST du jeu Training
 
 ```r
 condition <- condition <- factor(trainingDataset.df$Type)
@@ -242,6 +278,8 @@ vstData <- t(assay(data_VST))
 trainingDataset.df <- data.frame(Type=apply(as.matrix(rownames(vstData)),1,substrColName),vstData) # Reinsert Type Column a begining
 ```
 
+
+#### Visualisation de la projection PCA des échantillions Training
 
 
 ```r
@@ -262,7 +300,9 @@ legend("topleft",
 
 ![](figures/PCA_Training_01.png)
 
+\
 
+#### Normalisation VST du jeu de Test
 
 ```r
 condition <- condition <- factor(testDataset.df$Type)
@@ -279,7 +319,28 @@ vstData <- t(assay(data_VST))
 testDataset.df <- data.frame(Type=apply(as.matrix(rownames(vstData)),1,substrColName),vstData) # Reinsert Type Column a begining
 ```
 
+#### Visualisation de la projection PCA des échantillions Test
+
+
+```r
+pca.res <- PCA(testDataset.df[, -1], graph = FALSE)
+
+vcol.set <- rep("blue", length = nrow(testDataset.df))
+vcol.set[which(grepl("HNSC",testDataset.df$Type))] <- "magenta"
+
+plot(pca.res, 
+     habillage = "ind", 
+     col.hab = vcol.set, graph.type = "classic",
+     label = "none")
+legend("topleft",
+       legend = c("LUSC", 
+                  "HNSC"),
+       col = c("blue","magenta"), pch = 19)
+```
+
 ![](figures/PCA_Test_01.png)
+
+***
 
 ## Filtrage des échantillons qui ont un coefficient de corrélation de plus de 98%.
 
@@ -308,10 +369,12 @@ highlyCorrelated = findCorrelation(correlationMatrix, cutoff=correlationCutOff,n
 print(highlyCorrelated)
 ```
 
+#### Ceci sont les gènes hautement corrélées. La fonction findCorrelation ne donne que le resulat final des ses choix.
+
 ```
 [1] "ENSG00000173372.15" "ENSG00000002933.6"  "ENSG00000108821.12" "ENSG00000159189.10"
 ```
-#### Validation des resultats de la fonction findCorrelation
+#### Validation des résultats de la fonction findCorrelation en réduisant la dimension de la matrice de corrélation et en faisant une recherche les valeurs (X > 0.97 & X != 1). Donc 98% et pas lui-même (1) 
 
 ```r
 # melt the coreelation matrix to a smaller dimension data frame - easier for the sanity of the user !
@@ -320,6 +383,9 @@ validCorrelationMatrix <-meltCorrelationMatrix[((meltCorrelationMatrix$value > c
 validCorrelationMatrix <- droplevels(validCorrelationMatrix)
 print(validCorrelationMatrix)
 ```
+\
+
+#### Cette méthode de validation montre au moins les noms des gènes corrélées et les autres choix qui auraient été possible d’enlever.
 ```
                        Var1               Var2 value
 256749   ENSG00000106565.16  ENSG00000002933.6  0.98
@@ -332,6 +398,8 @@ print(validCorrelationMatrix)
 93241598 ENSG00000173369.14 ENSG00000173372.15  0.98
 ```
 
+#### Nombre d'échantillons avant d'enlever ls gènes hautement corrélées
+
 ```r
 dim(trainingDataset.df)
 ```
@@ -339,11 +407,14 @@ dim(trainingDataset.df)
 [1]   801 11062
 ```
 
-Enlever / filtrer les gènes de plus de 98% de corrélation.
+#### Enlever / filtrer les gènes de plus de 98% de corrélation.
 
 ```r
 trainingDataset.df <- trainingDataset.df[ , ! names(trainingDataset.df) %in% highlyCorrelated ] 
 ```
+
+#### Nombre d'échantillons après enlever les gènes hautement corrélées
+
 
 ```r
 dim(trainingDataset.df)
@@ -351,4 +422,13 @@ dim(trainingDataset.df)
 ```
 [1]   801 11058
 ```
+
+#### Visualisation de la projection PCA des échantillions pour savoir si le filtrage de corrélation a fait des changements
+![](figures/PCA_Training_02.png)
+
+***
+
+## Voici le compte final des échantillons qui serviront pour l’entrainement et les tests des modèles du projet post tous les filtrages.
+
+![](figures/Final_Count_DataSets_01.png)
 
