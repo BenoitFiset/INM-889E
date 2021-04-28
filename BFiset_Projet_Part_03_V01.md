@@ -1,11 +1,11 @@
 ---
-title: "R Notebook"
+title: 'Projet: TCGA HNSC LUSC ML - Partie #2'
+author: "Benoit Fiset"
+date: "27/04/2021"
 output:
   html_document: 
     keep_md: yes
 ---
-
-
 
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
 
