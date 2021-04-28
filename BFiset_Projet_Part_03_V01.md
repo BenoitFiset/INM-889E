@@ -57,7 +57,7 @@ ENSG00000000457.12               228               241              3026        
 ENSG00000000460.15               229               297              3479               820               577
 ==================  ================  ================  ================  ================  ================
 ```
-\
+
 
 #### Filtrage des gènes qui on plus de 95% de 0 comme compte. 
 
@@ -71,7 +71,7 @@ percentZeros.df <- data.frame(PercentZero=percentZerosCount, TotalZero=apply(raw
 
 kable(percentZeros.df[order(-percentZeros.df$PercentZero)[2200:2210],],format = "rst")
 ```
-\
+
 
 #### Un exemple de genes qui sont tous a 0. Il y à 1002 echantilions et la colonne "TotalZero" qui a une valeur de 1002 montre que tous les èchantillions de ce gène sont a 0.
 ```
@@ -91,7 +91,7 @@ ENSG00000199782.1      99.9002       1001
 ENSG00000199870.1      99.9002       1001
 =================  ===========  =========
 ```
-\
+
 
 #### Dans ce graph, suivant, des distibution des comptes des gènes, nous povons voir qu'il y a beaucoup de gènes (100%) qui ont un compte de 0. Donc enlevons de la ligne rouge "95%" et plus.
 
@@ -104,7 +104,7 @@ ggplot(data=percentZeros.df,aes(x=percentZerosCount)) +  geom_histogram(binwidth
 ```
 
 ![](figures/Plot_95_01.png)
-\
+
 
 #### Filtrage des gènes qui ont moins de 1% de comptes pour tout les èchantillions.
 
@@ -133,7 +133,7 @@ toFilterGenes
 FALSE  TRUE 
 11061 49422 
 ```
-\
+
 
 #### Inversion pour que TRUE = Garder gènes  et FALSE = Enlever gènes 
 
@@ -147,7 +147,7 @@ filteredGenes
 FALSE  TRUE 
 49422 11061 
 ```
-\
+
 
 #### Compte de gènes avant d'appliquer le filtrage 
 
@@ -157,7 +157,7 @@ dim(rawCountData)
 ```
 [1] 60483  1002
 ```
-\
+
 
 ####  Appliquer le filtrage 
 
@@ -165,7 +165,7 @@ dim(rawCountData)
 # This Filters the genes taht don't pass the more tnat 95% 0 and have less that 1% of counts.
 cleanCountData <- rawCountData[filteredGenes, ]
 ```
-\
+
 
 #### Compte de gènes après le filtrage 
 
@@ -175,9 +175,11 @@ dim(cleanCountData)
 ```
 [1] 11061  1002
 ```
-\
+***
 
-#### Ici nous allons ajouter une colonne pour identifier le Type de l’échantillon.  Ceci est nécessaire pour l’entrainement des modèles de machine learning.
+## Ajouter d'une colonne pour identifier le Type de l’échantillon.
+
+#### Ceci est nécessaire pour l’entrainement des modèles de machine learning.
 
 ```r
 # Function to return a substring, here the 4 first chars of the string sent as parameter (Ex: HNSC, LUSC)
@@ -259,7 +261,7 @@ kable(testDataset.df[107:117,1:6],"rst")
 ***
 
 ## Normalisation avec VST de DESeq2
-\
+
 
 #### Normalisation VST du jeu Training
 
@@ -300,7 +302,7 @@ legend("topleft",
 
 ![](figures/PCA_Training_01.png)
 
-\
+
 
 #### Normalisation VST du jeu de Test
 
@@ -383,7 +385,7 @@ validCorrelationMatrix <-meltCorrelationMatrix[((meltCorrelationMatrix$value > c
 validCorrelationMatrix <- droplevels(validCorrelationMatrix)
 print(validCorrelationMatrix)
 ```
-\
+
 
 #### Cette méthode de validation montre au moins les noms des gènes corrélées et les autres choix qui auraient été possible d’enlever.
 ```
