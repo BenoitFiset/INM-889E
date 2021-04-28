@@ -7,13 +7,15 @@ output:
     keep_md: yes
 ---
 
+
+
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
 
 ***
 
 ## Sur le ordinateur personnel:
 
-### But de la section: Filtrage, Découpe ("Training / Test sets"), Normalisation, Indice de Corrélation - Tumeurs er Normale
+### But de la section: Filtrage, Découpe ("Training / Test sets"), Normalisation, Indice de Corrélation - Tumeurs et Normale
 
 
 ```r
@@ -235,5 +237,118 @@ coldata <- data.frame(row.names=colnames(tempDDSdftoMat), condition)
 dds <- DESeqDataSetFromMatrix(countData=tempDDSdftoMat, colData=coldata, design=~condition)
 
 data_VST <- varianceStabilizingTransformation(dds, blind = TRUE, fitType = "parametric")
+
+vstData <- t(assay(data_VST))
+trainingDataset.df <- data.frame(Type=apply(as.matrix(rownames(vstData)),1,substrColName),vstData) # Reinsert Type Column a begining
+```
+
+
+
+```r
+pca.res <- PCA(trainingDataset.df[, -1], graph = FALSE)
+
+vcol.set <- rep("blue", length = nrow(trainingDataset.df))
+vcol.set[which(grepl("HNSC",trainingDataset.df$Type))] <- "magenta"
+
+plot(pca.res, 
+     habillage = "ind", 
+     col.hab = vcol.set, graph.type = "classic",
+     label = "none")
+legend("topleft",
+       legend = c("LUSC", 
+                  "HNSC"),
+       col = c("blue","magenta"), pch = 19)
+```
+
+![](figures/PCA_Training_01.png)
+
+
+
+```r
+condition <- condition <- factor(testDataset.df$Type)
+
+# Transpose and Convert Test Data Frame to Matrix without the Typwe column
+tempDDSdftoMat <- as.matrix(t(testDataset.df[,-1]))   
+coldata <- data.frame(row.names=colnames(tempDDSdftoMat), condition)
+
+dds <- DESeqDataSetFromMatrix(countData=tempDDSdftoMat, colData=coldata, design=~condition)
+
+data_VST <- varianceStabilizingTransformation(dds, blind = TRUE, fitType = "parametric")
+
+vstData <- t(assay(data_VST))
+testDataset.df <- data.frame(Type=apply(as.matrix(rownames(vstData)),1,substrColName),vstData) # Reinsert Type Column a begining
+```
+
+![](figures/PCA_Test_01.png)
+
+## Filtrage des échantillons qui ont un coefficient de corrélation de plus de 98%.
+
+
+```r
+# Remove the highly correlated genes in the training set
+correlationCutOff = 0.97 # Remove greater than this value (This is NOT ">=" it's ">" )
+correlationMatrix <- cor(subset(trainingDataset.df, select = -Type))
+correlationMatrix <- round(correlationMatrix,2)
+highlyCorrelated = findCorrelation(correlationMatrix, cutoff=correlationCutOff,names=TRUE, verbose=TRUE, exact = FALSE)
+```
+
+```
+ Combination row 24 and column 2346 is above the cut-off, value = 0.98 
+ 	 Flagging column 24 
+ Combination row 2540 and column 7376 is above the cut-off, value = 0.98 
+ 	 Flagging column 2540 
+ Combination row 6758 and column 8429 is above the cut-off, value = 0.98 
+ 	 Flagging column 6758 
+ Combination row 8429 and column 8430 is above the cut-off, value = 0.98 
+ 	 Flagging column 8430 
+```
+
+
+```r
+print(highlyCorrelated)
+```
+
+```
+[1] "ENSG00000173372.15" "ENSG00000002933.6"  "ENSG00000108821.12" "ENSG00000159189.10"
+```
+#### Validation des resultats de la fonction findCorrelation
+
+```r
+# melt the coreelation matrix to a smaller dimension data frame - easier for the sanity of the user !
+meltCorrelationMatrix <- melt(correlationMatrix)
+validCorrelationMatrix <-meltCorrelationMatrix[((meltCorrelationMatrix$value > correlationCutOff)&(meltCorrelationMatrix$value != 1)),] # Ex: find (X > 0.97 & X != 1)
+validCorrelationMatrix <- droplevels(validCorrelationMatrix)
+print(validCorrelationMatrix)
+```
+```
+                       Var1               Var2 value
+256749   ENSG00000106565.16  ENSG00000002933.6  0.98
+25938069  ENSG00000002933.6 ENSG00000106565.16  0.98
+28091255 ENSG00000164692.16 ENSG00000108821.12  0.98
+74747606 ENSG00000173369.14 ENSG00000159189.10  0.98
+81577415 ENSG00000108821.12 ENSG00000164692.16  0.98
+93228866 ENSG00000159189.10 ENSG00000173369.14  0.98
+93230538 ENSG00000173372.15 ENSG00000173369.14  0.98
+93241598 ENSG00000173369.14 ENSG00000173372.15  0.98
+```
+
+```r
+dim(trainingDataset.df)
+```
+```
+[1]   801 11062
+```
+
+Enlever / filtrer les gènes de plus de 98% de corrélation.
+
+```r
+trainingDataset.df <- trainingDataset.df[ , ! names(trainingDataset.df) %in% highlyCorrelated ] 
+```
+
+```r
+dim(trainingDataset.df)
+```
+```
+[1]   801 11058
 ```
 
