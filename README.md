@@ -31,6 +31,7 @@ Repo pour le cours INM 889E - Projet de ML
   + Section 1 - [Sélection et Téléchargement des fichiers TCGA](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_01_V01.md)
   + Section 2 - [Pré-Traitement des fichiers (Regroupement des fichiers comptes)](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_02_V01.md)
   + Section 3 - [Pré-Traitement des fichiers (Filtrage, Découpe, Normalisation, Corrélation) ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md)
+    + Lien Rapide: [Découpage Training / Test: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#decoupage-de-des-donnees-en-80-training-et-20-test)  
     + Bonus - [Autres Normalistions: Aucune et ln()]
   + Section 4 - [Entrainement]
     + Bonus - [Comparaison des performances de 6 algorithmes de ML avec les différentes normalisations des données]
