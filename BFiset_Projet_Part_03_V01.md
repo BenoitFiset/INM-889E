@@ -88,4 +88,4 @@ ggplot(data=percentZeros.df,aes(x=percentZerosCount)) +  geom_histogram(binwidth
   geom_vline(xintercept = percentFilterZero, color = "red")
 ```
 
-![](BFiset_Projet_Part_03_V01_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](figures/Plot_95_01.png)
