@@ -10,9 +10,11 @@ output:
 <!-- if you want to keep only markdown and get GitHub-flavored markdown. In that case, make your YAML look like this: output: github_document -->
 
 
-
-
-
+```
+library(knitr)    # kable
+library(stringr)    # str_sub and str_replace
+library(tidyverse)
+```
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
 
 ***
@@ -38,12 +40,6 @@ TCGA_SampleDict <- read.table("gdc_sample_sheet.2021-04-26.tsv", sep ="\t", head
 
 ```r
 table(TCGA_SampleDict$Sample.Type)
-```
-
-```
-## 
-##          Metastatic       Primary Tumor Solid Tissue Normal 
-##                   2                1002                  93
 ```
 
 #### Création d’une nouvelle colonne « BarCode » qui contiendra la concaténation du type de cancer et le nom de l’échantillon.
@@ -112,7 +108,7 @@ TCGA_Barcodes <- read_csv("TCGA_Barcode_Dict_Tumor.tsv",col_names = c("Filename"
 # … with 992 more rows
 ```
 
-#### Lecture et faire un liste de tous les fichiers possiblement à traiter:
+#### Lecture et faire une liste de tous les fichiers possiblement à traiter:
 
 ```r
 locationOfFiles <- "./UnzippedFiles"
@@ -268,8 +264,3 @@ rawCounts.df<- purrr::reduce(rawCounts, left_join, by = "Genes")
 write.table(as.data.frame(rawCounts.df),sep="\t","Normal_Merged_2Lung_Counts.tsv", row.names = FALSE, quote = FALSE)
 ```
 
-
-<!-- # ```{r pressure, echo=FALSE} -->
-<!-- # plot(pressure) -->
-<!-- # ``` -->
-<!-- Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. -->

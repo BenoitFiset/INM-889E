@@ -8,6 +8,14 @@ output:
 ---
 
 
+```
+library (DESeq2)    #VST
+library(knitr)    #kable
+library(tidyverse)  #purrr, reader, tibble, ...
+library(FactoMineR) #PCA
+library(caret)      #ML Algos
+library(reshape2)   #melt
+```
 
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
 
