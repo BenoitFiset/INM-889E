@@ -439,3 +439,19 @@ dim(trainingDataset.df)
 
 ![](figures/Final_Count_DataSets_01.png)
 
+***
+***
+## Bonus
+
+#### Autre code qui a été utilisé pour faire un autre type de normalisation (log naturel) des données qui ont été utilisés pour une expérience parelle de comparaison des performances de 6 algorithmes de machine learning. Fait pour jeu Training et Test. Ceci remplaçait la normalisation VST dans le workflow.
+
+
+```r
+trainingDataset.df <- log(trainingDataset.df[,-1]) # Normalize without the Type Column
+substrColName = function(x){ substr(x,1,4) }   # Need This function for apply in next line
+trainingDataset.df <- cbind(Type=apply(as.matrix(rownames(trainingDataset.df)),1,substrColName),trainingDataset.df)
+
+testDataset.df <- log(testDataset.df[,-1]) # Normalize without the Type Column
+substrColName = function(x){ substr(x,1,4) }   # Need This function for apply in next line
+testDataset.df <- cbind(Type=apply(as.matrix(rownames(testDataset.df)),1,substrColName),testDataset.df)
+```
