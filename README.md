@@ -11,7 +11,7 @@ Repo pour le cours INM 889E - Projet de ML
   + Le téléchargement des fichiers incluant le regroupement et décompression
   + Le regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs
   + Le regroupement des fichiers individuels en une matrice unifié de comptes - Normale
-  + Entrainement des modèles
+  + Entrainement des modèles (Algo. SVM et Random Forest)
   + “Tuning" des modèles
   + Prediction des modèles 
 
