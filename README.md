@@ -35,10 +35,8 @@ Repo pour le cours INM 889E - Projet de ML
     + Lien Rapide: [Colonne d'idenfication du Type de l’échantillon](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#ajouter-dune-colonne-pour-identifier-le-type-de-l%C3%A9chantillon)
     + Lien Rapide: [Découpage Training / Test: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#decoupage-de-des-donnees-en-80-training-et-20-test)
     + Lien Rapide: [Normalisation VST: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#normalisation-avec-vst-de-deseq2)
-    + Lien Rapide: [Filtrage des ind. corrélation: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-%C3%A9chantillons-qui-ont-un-coefficient-de-corr%C3%A9lation-de-plus-de-98![image](https://user-images.githubusercontent.com/33760704/116473933-d5510a80-a845-11eb-9f89-95bce6ce3d52.png)
-    + Lien Rapide: [Filtrage des ind. corrélation: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-%C3%A9chantillons-qui-ont-un-coefficient-de-corr%C3%A9lation-de-plus-de-98![image](https://user-images.githubusercontent.com/33760704/116475094-5b218580-a847-11eb-8fed-3f40f702906f.png)
-    + Lien Rapide: [Compte final des jeu de donnés: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#voici-le-compte-final-des-%C3%A9chantillons-qui-serviront-pour-lentrainement-et-les-tests-des-mod%C3%A8les-du-projet-post-tous-les-filtrages![image](https://user-images.githubusercontent.com/33760704/116475213-860bd980-a847-11eb-82bb-7aa95f4b225b.png)
-
+    + Lien Rapide: [Filtrage des ind. corrélation: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-%C3%A9chantillons-qui-ont-un-coefficient-de-corr%C3%A9lation-de-plus-de-98)
+    + Lien Rapide: [Compte final des jeu de donnés: ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#voici-le-compte-final-des-%C3%A9chantillons-qui-serviront-pour-lentrainement-et-les-tests-des-mod%C3%A8les-du-projet-post-tous-les-filtrages!)
     + Bonus - [Autres Normalistions: Aucune et ln()]
   + Section 4 - [Entrainement]
     + Bonus - [Comparaison des performances de 6 algorithmes de ML avec les différentes normalisations des données]
