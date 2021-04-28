@@ -36,7 +36,7 @@ Repo pour le cours INM 889E - Projet de ML
     + Lien Rapide: [Découpage Training / Test](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#decoupage-de-des-donnees-en-80-training-et-20-test)
     + Lien Rapide: [Normalisation VST](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#normalisation-avec-vst-de-deseq2)
     + Lien Rapide: [Filtrage des ind. corrélation](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-%C3%A9chantillons-qui-ont-un-coefficient-de-corr%C3%A9lation-de-plus-de-98)
-    + Lien Rapide: [Compte final des jeu de donnés](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#voici-le-compte-final-des-%C3%A9chantillons-qui-serviront-pour-lentrainement-et-les-tests-des-mod%C3%A8les-du-projet-post-tous-les-filtrages)
+    + Lien Rapide: [Compte final des jeu de donnés](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#compte-final)
     + Bonus - [Autres Normalistions: Aucune et ln()]
   + Section 4 - [Entrainement]
     + Bonus - [Comparaison des performances de 6 algorithmes de ML avec les différentes normalisations des données]
