@@ -10,11 +10,7 @@ output:
 <!-- if you want to keep only markdown and get GitHub-flavored markdown. In that case, make your YAML look like this: output: github_document -->
 
 
-```
-library(knitr)    # kable
-library(stringr)    # str_sub and str_replace
-library(tidyverse)
-```
+
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
 
 ***
@@ -24,7 +20,11 @@ library(tidyverse)
 ### But de la section: Regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs er Normale
 
 ***
-
+```
+library(knitr)      #kable
+library(stringr)    #str_sub and str_replace
+library(tidyverse)  #purrr, reader, tibble, ...
+```
 
 ```r
 set.seed(1234) # Important pour tjrs avoir les memes resultats
