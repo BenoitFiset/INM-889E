@@ -2,7 +2,7 @@
 Repo pour le cours INM 889E - Projet de ML
 
 ***
-```
+
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
 
 **Note:  Le jeu de donnés d’échantillons Normale sera utilisé pour tester les prédictions des modèle. Ici le modèle fera des prédictions sur le type de cancer HNSC vs LUSC et non “Tumeur” vs “Normale”. Le jeu de donnés Normale comporte le type de cancer HNSC et LUSC dans son metadata.**
@@ -24,8 +24,9 @@ Repo pour le cours INM 889E - Projet de ML
   + Normalisation des données “Test” avec VST de DESeq2
   + Normalisation des données “Normale” avec VST de DESeq2
   + Filtrer les genes qui ont un indice de correlation de plus de 98% (Tumeur et Normale)
-```
+
 ***
+
 ```
 Le projet à été fait en R avec les libraires suivantes:
     library(caret)        # caret (Classification And REgression Training) - creating predictive models
