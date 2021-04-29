@@ -2,7 +2,7 @@
 Repo pour le cours INM 889E - Projet de ML
 
 ***
-
+```
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
 
 **Note:  Le jeu de donnés d’échantillons Normale sera utilisé pour tester les prédictions des modèle. Ici le modèle fera des prédictions sur le type de cancer HNSC vs LUSC et non “Tumeur” vs “Normale”. Le jeu de donnés Normale comporte le type de cancer HNSC et LUSC dans son metadata.**
@@ -24,7 +24,7 @@ Repo pour le cours INM 889E - Projet de ML
   + Normalisation des données “Test” avec VST de DESeq2
   + Normalisation des données “Normale” avec VST de DESeq2
   + Filtrer les genes qui ont un indice de correlation de plus de 98% (Tumeur et Normale)
-
+```
 ***
 ```
 Le projet à été fait en R avec les libraires suivantes:
@@ -40,7 +40,7 @@ Le projet à été fait en R avec les libraires suivantes:
     library(tidyverse)    # purrr, reader, tibble, ...
 ```
 ***
-
+```
 # 6 Sections pour ce projet
   + Section 1 - [Sélection et Téléchargement des fichiers TCGA](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_01_V01.md)
   + Section 2 - [Pré-Traitement des fichiers (Regroupement des fichiers comptes)](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_02_V01.md)
@@ -56,6 +56,7 @@ Le projet à été fait en R avec les libraires suivantes:
     + Bonus - [Comparaison des performances de 6 algorithmes de ML avec les différentes normalisations des données]
   + Section 5 - [Prédictions]
   + Section 6 - [Résultats]
+```
 ***
 
 # Autre Section
