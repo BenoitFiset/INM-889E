@@ -7,6 +7,16 @@ output:
     keep_md: yes
 ---
 
+<style type="text/css">
+body .main-container {
+  max-width: 1100px !important;
+  width: 1100px !important;
+}
+body {
+  max-width: 1100px !important;
+}
+</style>
+    
 
 
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
