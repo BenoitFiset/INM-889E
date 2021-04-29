@@ -7,7 +7,7 @@ Repo pour le cours INM 889E - Projet de ML
 
 **Note:  Le jeu de donnés d’échantillons Normale sera utilisé pour tester les prédictions des modèle. Ici le modèle fera des prédictions sur le type de cancer HNSC vs LUSC et non “Tumeur” vs “Normale”. Le jeu de donnés Normale comporte le type de cancer HNSC et LUSC dans son metadata.**
 
-* Vu la taille des fichier et le temps de calcul nécessaire une partie du traitement des fichiers ont été effectués sur des serveurs HPC de Calcul Québec (Béluga):
+* Vu la taille des fichier et le temps de calcul nécessaire une partie du traitement des fichiers ont été effectués sur des serveurs HPC de Calcul Québec (Béluga et Graham):
   + Le téléchargement des fichiers incluant le regroupement et décompression
   + Le regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs
   + Le regroupement des fichiers individuels en une matrice unifié de comptes - Normale
