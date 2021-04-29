@@ -26,6 +26,7 @@ Repo pour le cours INM 889E - Projet de ML
   + Filtrer les genes qui ont un indice de correlation de plus de 98% (Tumeur et Normale)
 
 ***
+```
 Le projet à été fait en R avec les libraires suivantes:
     library(caret)        # caret (Classification And REgression Training) - creating predictive models
     library(DESeq2)       # variance stabilizing transformation (VST) Normalisation  
@@ -37,6 +38,7 @@ Le projet à été fait en R avec les libraires suivantes:
     library(reshape2)     # melt
     library(stringr)      # str_sub and str_replace
     library(tidyverse)    # purrr, reader, tibble, ...
+```
 ***
 
 # 6 Sections pour ce projet
