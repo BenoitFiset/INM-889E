@@ -40,7 +40,7 @@ Le projet à été fait en R avec les libraires suivantes:
     library(tidyverse)    # purrr, reader, tibble, ...
 ```
 ***
-```
+
 # 6 Sections pour ce projet
   + Section 1 - [Sélection et Téléchargement des fichiers TCGA](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_01_V01.md)
   + Section 2 - [Pré-Traitement des fichiers (Regroupement des fichiers comptes)](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_02_V01.md)
@@ -56,7 +56,7 @@ Le projet à été fait en R avec les libraires suivantes:
     + Bonus - [Comparaison des performances de 6 algorithmes de ML avec les différentes normalisations des données]
   + Section 5 - [Prédictions]
   + Section 6 - [Résultats]
-```
+
 ***
 
 # Autre Section
