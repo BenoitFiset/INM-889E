@@ -81,7 +81,7 @@ kable(percentZeros.df[order(-percentZeros.df$PercentZero)[2200:2210],],format = 
 ```
 
 
-#### Un exemple de genes qui sont tous a 0. Il y à 1002 echantilions et la colonne "TotalZero" qui a une valeur de 1002 montre que tous les èchantillions de ce gène sont a 0.
+#### Un exemple de genes qui sont tous a 0. Il y à 1002 echantilions et la colonne "TotalZero" qui a une valeur de 1002 montre que tous les èchantillions de ce gène sont à 0.
 ```
 =================  ===========  =========
 \                  PercentZero  TotalZero
@@ -273,8 +273,14 @@ kable(testDataset.df[107:117,1:6],"rst")
 
 ## Normalisation avec VST de DESeq2
 
+```
+The varianceStabilizingTransformation() function calculates a variance stabilizing transformation (VST) from the fitted dispersion-mean relation(s) and then transforms the count data (normalized by division by the size factors or normalization factors), yielding a matrix of values which are now approximately homoskedastic (having constant variance along the range of mean values). The transformation also normalizes with respect to library size. 
 
-#### Normalisation VST du jeu Training
+From: https://rdrr.io/bioc/DESeq2/man/varianceStabilizingTransformation.html
+```
+
+#### Normalisation VST (variance stabilizing transformation) du jeu Training
+
 
 ```r
 condition <- condition <- factor(trainingDataset.df$Type)
@@ -314,22 +320,28 @@ legend("topleft",
 ![](figures/PCA_Training_01.png)
 
 
+#### Normalisation VST (variance stabilizing transformation) du jeu de Test
 
-#### Normalisation VST du jeu de Test
 
 ```r
+#The variable that is used for the VST Condition is the Type column
 condition <- condition <- factor(testDataset.df$Type)
 
-# Transpose and Convert Test Data Frame to Matrix without the Typwe column
+# Transpose and Convert Test Data Frame to Matrix without the Type column
 tempDDSdftoMat <- as.matrix(t(testDataset.df[,-1]))   
 coldata <- data.frame(row.names=colnames(tempDDSdftoMat), condition)
 
+# Import the Counts matrix in the dds ofject
 dds <- DESeqDataSetFromMatrix(countData=tempDDSdftoMat, colData=coldata, design=~condition)
 
+#Perform tht VST normalisation 
 data_VST <- varianceStabilizingTransformation(dds, blind = TRUE, fitType = "parametric")
 
+#Extract teh assay out of the DESeq2 S4 structure
 vstData <- t(assay(data_VST))
-testDataset.df <- data.frame(Type=apply(as.matrix(rownames(vstData)),1,substrColName),vstData) # Reinsert Type Column a begining
+
+# Reinsert Type Column at begining
+testDataset.df <- data.frame(Type=apply(as.matrix(rownames(vstData)),1,substrColName),vstData) 
 ```
 
 #### Visualisation de la projection PCA des échantillions Test
