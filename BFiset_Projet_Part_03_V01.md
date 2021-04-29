@@ -274,7 +274,12 @@ kable(testDataset.df[107:117,1:6],"rst")
 ## Normalisation avec VST de DESeq2
 
 ```
-The varianceStabilizingTransformation() function calculates a variance stabilizing transformation (VST) from the fitted dispersion-mean relation(s) and then transforms the count data (normalized by division by the size factors or normalization factors), yielding a matrix of values which are now approximately homoskedastic (having constant variance along the range of mean values). The transformation also normalizes with respect to library size. 
+The varianceStabilizingTransformation() function calculates a variance stabilizing 
+transformation (VST) from the fitted dispersion-mean relation(s) and then transforms
+the count data (normalized by division by the size factors or normalization factors), 
+yielding a matrix of values which are now approximately homoskedastic (having constant 
+variance along the range of mean values). The transformation also normalizes with 
+respect to library size. 
 
 From: https://rdrr.io/bioc/DESeq2/man/varianceStabilizingTransformation.html
 ```
