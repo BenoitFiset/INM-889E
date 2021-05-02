@@ -84,7 +84,7 @@ control <- trainControl(method="cv", number=10, allowParallel = TRUE, verboseIte
 metric <- "Accuracy"
 ```
 
-
+# 
 ## Comparaison des performances de 6 algorithmes de ML avec des différentes normalisations des données
 
 
