@@ -523,9 +523,9 @@ Accuracy was used to select the optimal model using the largest value.
 The final value used for the model was mtry = 14.
 ```
 
-#Le meilleur ..... mty 14 pas mieux que le 94 du mtry = 11057 du  debut....
+#### Le meilleur modèle utilise un mty de 15 mais ne donne pas un meilleur pourcentage de précision, 0.9304400,  que l’entrainement initial qui avait donné un mtry = 11057 avec un pourcentage de précision de 0.9400760.
 
-
+Ces derniers résltats en graphique
 
 ```r
 plot(rf_gridsearch)
@@ -536,7 +536,7 @@ plot(rf_gridsearch)
 
 #### Random Search
 
-Pour (search=random) il faut le paramètre « tuneLength »  qui est nombre total de combinaisons aléatoire de paramètres (mtry) de réglage uniques à générer. C’est le paramètre « tuneLength » de la fonction caret ::train().
+Pour (search=random) il faut le paramètre « tuneLength »  qui est nombre total de combinaisons aléatoire de paramètres (mtry) de réglage uniques à générer. C’est le paramètre « tuneLength » de la fonction caret::train().
 
 ```
 Note: Cette section de code, avec 32 CPU prends un peu moins de 3 heures de calcul 
@@ -587,15 +587,16 @@ Resampling results across tuning parameters:
 Accuracy was used to select the optimal model using the largest value.
 The final value used for the model was mtry = 9196.
 ```
-#Le meilleur ..... mty 9196 pas mieux que le 94% du mtry = 11057 du debut....
+#### Le meilleur modèle utilise un mty de 9196 mais ne donne pas un meilleur pourcentage de précision, 0.9362941, que l’entrainement initial qui avait donné un mtry = 11057 avec un pourcentage de précision de 0.9400760. 
 
+Ces derniers résltats en graphique
 
 ```r
 plot(rf_gridsearch)
 ```
 ![](figures/RF_Random_plot_01.png)
 
-## Aggregation des rusultats pour comparaison des tests
+## Agrégation des résultats pour comparaison des 2 tests d’essai d’augmentation de précision
 
 
 ```r
@@ -619,9 +620,28 @@ Kappa
 rf_gridsearch_vst 0.7741531 0.8309209 0.8506833 0.8630206 0.8998121 0.9499061    0
 rf_random_vst     0.7996243 0.8247810 0.8746081 0.8722833 0.9181104 0.9499687    0
 ```
-#### Conclusion
 
-Pas mieux donc ... garder mtry = 11057
+#### Voici les résultats de la première itération qui donnais un mtry = 11057 et 94% de précision. 
+
+Notez que je ne peux agréger les 3 avec « results » car la première itération a « 10 folds » et ces 2 derniers tests en ont 15.
+
+```
+Accuracy 
+                   Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA's
+rf_VST         0.9125000 0.9187500 0.9378858 0.9400760 0.9623813 0.9629630    0
+
+Kappa 
+                   Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA's
+rf_VST        0.8241206 0.8372574 0.8757434 0.8798831 0.9245392 0.9257562    0
+```
+
+
+## Conclusion de ce test d’essai d’augmentation de précision
+
+####  Je n’ai pas réussi d’augmenter la précision avec ces 2 techniques. J’aurais pu m’acharner plusieurs semaines pour trouver les bons paramètres pour avoir une meilleure précision, mais faute de temps, ceci sera une démonstration qu’il existe des méthodes pour trouver des optimisations pour tenter d’augmenter la précision des modèles. 
+
+#### Donc, nous resterons avec les valeurs de l’entrainement initial qui avait donné un mtry = 11057 avec un pourcentage de précision de 0.9400760 pour la prochaine étape de prédiction avec le jeu des données Test et Normale.
+
 
 ***
 
