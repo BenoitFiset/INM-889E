@@ -262,11 +262,11 @@ bwplot(results, scales=scales)
 
 ```
 Nous pouvons constater par ces résultats de test de comparaison d’entrainement que le 
-modèles svmLinear et lda avec normalisation VST et Log sont les plus précis des tests. Je
+modèles svmLinear et lda avec normalisation VST et Log sont les plus précis des tests (98%). Je
 dirais même qu'ils sont presque identiques…. Ça se joue loin dans les petites décimales !
 
 Donc pour le projet de vais choisir « svmLinear » avec normalisation VST et un du milieu du
-peloton « rf » avec normalisation VST et essayer d’améliorer ses résultats en modifiant ses 
+peloton « rf » avec normalisation VST (94%) et essayer d’améliorer ses résultats en modifiant ses 
 paramètres. 
 ```
 
@@ -299,6 +299,10 @@ Resampling results:
 
 Tuning parameter 'C' was held constant at a value of 1
 ```
+
+## Comme mentionné à la sélection du model le svmLinear_VST a une précision de 98% au final
+
+
 #### Voir les paramètres du modèle final SVM.
 
 
@@ -406,6 +410,8 @@ Resampling results across tuning parameters:
 Accuracy was used to select the optimal model using the largest value.
 The final value used for the model was mtry = 11057.
 ```
+## Comme mentionné à la sélection du model le fitrf_VST a une précision de 94% au final
+
 #### Voir les paramètres du modèle final RF.
 
 
@@ -431,7 +437,7 @@ Il serait intéressant aussi de voir les « gènes » qui influence le plus le m
 pour le SVM. Ayant pas mis le pramametre importance=TRUE lors de l'entrainement je le fais apres coup.
 
 Note: La valeur d'importance de Random Forest est une mesure agrégée. (d'ou qu'une valeur de plus que 100 
-est possible). Cette valeur quantifient seulement l'impact du prédicteur, pas l'effet spécifique.
+est possible). Cette valeur quantifie seulement l'impact du prédicteur, pas l'effet spécifique.
 ``` 
 
 ```r
@@ -480,6 +486,47 @@ plot(rocImpfitrf_VST, top = 20, col="red")
 
 ![](figures/SVM_RF_Imp_01.png)
 
+***
+
+## Essayons d’améliorer la précision du modèlefitrf_VST pour avoir une précision de plus que 94% avec les paramètres trainControl() de caret.
+
+Au lieu de prendre le « K-fold cross-validation » je vais essayer avec « Repeated K-fold cross-validation » qui a un paramètre de plus : « repeats » qui permet de refaire le « K-fold cross-validation » un certain nombre de fois.  
+
+Le package caret permet de chercher les hyperparamètres d’optimisation au hasard. Il permet 2 styles : le premier, complètement au hasard (search=random) ou le deuxième au hasard mais d’une grille de valeurs donnée (search=grid). Je vais faire les 2 méthodes. Ceci est le paramètre « search » de la fonction caret ::trainControl()
+
+Le modèle Random Forest utilise le paramètre « mtry » comme variable pour se raffiner. Cette variable permet de choisir le nombre de variables échantillonnées aléatoirement comme 
+candidats à chaque division de l’arbre de décision. Pour (search=grid) il faut donner un grille de valeurs. Ceci est fait avec la structure « tunegrid » qui est utilisé par le paramètre « tuneGrid » de la fonction caret ::train().
+
+
+
+
+```r
+# Grid Search
+set.seed(1234)
+cl <- makeCluster(32, type='PSOCK', outfile="OutCaret.txt")
+registerDoParallel(cl)
+
+control <- trainControl(method="repeatedcv", number=10, repeats=3, search="grid", allowParallel = TRUE)
+metric <- "Accuracy"
+
+tunegrid <- expand.grid(.mtry=c(1:15))
+rf_gridsearch <- caret::train(Type~., data=trainingDataset.df , method="rf", metric=metric, tuneGrid=tunegrid, trControl=control)
+
+print(rf_gridsearch)
+plot(rf_gridsearch)
+```
+
+
+```r
+# Random Search
+control <- trainControl(method="repeatedcv", number=10, repeats=3, search="random", allowParallel = TRUE)
+metric <- "Accuracy"
+set.seed(1234)
+rf_random <- train(Type~., data=trainingDataset.df, method="rf", metric=metric, tuneLength=15, trControl=control)
+saveRDS(rf_random , "rf_random_vst.rds")
+
+results <- resamples(list(rf_gridsearch_vst=rf_gridsearch, rf_random_vst=rf_random))
+```
 ***
 
 ## Fin section Entrainement des modèles de machine learning.
