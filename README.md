@@ -54,7 +54,7 @@ Le projet à été fait en R avec les libraires suivantes:
   + Section 4 - [Entrainement](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md)
     + Lien Rapide: [Comparaison des performances de 6 algorithmes](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#comparaison-des-performances-de-6-algorithmes-de-ml-avec-des-diff%C3%A9rentes-normalisations-des-donn%C3%A9es)
     + Lien Rapide: [BoxPlot des resultats de test de performance et choix](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#un-beau-boxplot-plus-gentil-pour-loeil-que-des-colonnes-de-chiffres-pour-les-resultats)
-    + Lien Rapide: [Test poour tenter d'améliorer la précision](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#essayons-dam%C3%A9liorer-la-pr%C3%A9cision-du-mod%C3%A8le-fitrf_vst-pour-avoir-une-pr%C3%A9cision-de-plus-que-94-avec-les-param%C3%A8tres-traincontrol-de-caret)
+    + Lien Rapide: [Test pour tenter d'améliorer la précision](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#essayons-dam%C3%A9liorer-la-pr%C3%A9cision-du-mod%C3%A8le-fitrf_vst-pour-avoir-une-pr%C3%A9cision-de-plus-que-94-avec-les-param%C3%A8tres-traincontrol-de-caret)
     + Lien Rapide: [Resultats et conclusion de ces tests d'amélioration de la précision](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#agr%C3%A9gation-des-r%C3%A9sultats-pour-comparaison-des-2-tests-dessai-daugmentation-de-pr%C3%A9cision)
   + Section 5 - [Prédictions]
   + Section 6 - [Résultats]
