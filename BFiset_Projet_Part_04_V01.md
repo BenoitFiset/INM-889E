@@ -469,7 +469,7 @@ Le package caret permet de chercher les hyperparamètres d’optimisation au has
 Le modèle Random Forest utilise le paramètre « mtry » comme variable pour se raffiner. Cette variable permet de choisir le nombre de variables échantillonnées aléatoirement comme 
 candidats à chaque division de l’arbre de décision. Pour (search=grid) il faut donner un grille de valeurs. Ceci est fait avec la structure « tunegrid » qui est utilisé par le paramètre « tuneGrid » de la fonction caret ::train().
 
-#### Grid Search
+### Méthode: Grid Search
 
 ```
 Note: Cette section de code, avec 32 CPU prends un peu moins de 3 heures de calcul 
@@ -525,7 +525,7 @@ The final value used for the model was mtry = 14.
 
 #### Le meilleur modèle utilise un mty de 15 mais ne donne pas un meilleur pourcentage de précision, 0.9304400,  que l’entrainement initial qui avait donné un mtry = 11057 avec un pourcentage de précision de 0.9400760.
 
-Ces derniers résltats en graphique
+Ces derniers résultats en graphique
 
 ```r
 plot(rf_gridsearch)
@@ -534,9 +534,9 @@ plot(rf_gridsearch)
 
 ***
 
-#### Random Search
+### Méthode: Random Search
 
-Pour (search=random) il faut le paramètre « tuneLength »  qui est nombre total de combinaisons aléatoire de paramètres (mtry) de réglage uniques à générer. C’est le paramètre « tuneLength » de la fonction caret::train().
+Pour (search=random) il faut le paramètre « tuneLength » qui est nombre total de combinaisons aléatoire de paramètres (mtry) de réglage uniques à générer. C’est le paramètre « tuneLength » de la fonction caret::train().
 
 ```
 Note: Cette section de code, avec 32 CPU prends un peu moins de 3 heures de calcul 
@@ -589,7 +589,7 @@ The final value used for the model was mtry = 9196.
 ```
 #### Le meilleur modèle utilise un mty de 9196 mais ne donne pas un meilleur pourcentage de précision, 0.9362941, que l’entrainement initial qui avait donné un mtry = 11057 avec un pourcentage de précision de 0.9400760. 
 
-Ces derniers résltats en graphique
+Ces derniers résultats en graphique
 
 ```r
 plot(rf_gridsearch)
@@ -623,7 +623,7 @@ rf_random_vst     0.7996243 0.8247810 0.8746081 0.8722833 0.9181104 0.9499687   
 
 #### Voici les résultats de la première itération qui donnais un mtry = 11057 et 94% de précision. 
 
-Notez que je ne peux agréger les 3 avec « results » car la première itération a « 10 folds » et ces 2 derniers tests en ont 15.
+Notez que je ne peux agréger les 3 avec la fonction resamples() car la première itération a « 10 folds » et ces 2 derniers tests en ont 15, donc non compatible pour la fonction.
 
 ```
 Accuracy 
