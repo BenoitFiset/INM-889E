@@ -52,7 +52,6 @@ Le projet à été fait en R avec les libraires suivantes:
     + Lien Rapide: [Compte final des jeu de donnés](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#compte-final)
     + Lien Rapide: [Bonus - Autre Normalistion Log Naturel](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#bonus) (Git fonctionne mal pour un lien rapide de fin de page. Faut descendre.)
   + Section 4 - [Entrainement](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md)
-    + Bonus - [Comparaison des performances de 6 algorithmes de ML avec les différentes normalisations des données]
   + Section 5 - [Prédictions]
   + Section 6 - [Résultats]
 
