@@ -157,9 +157,9 @@ fitrf      <- caret::train(Type~., data=trainingDataset.df , method="rf", metric
 fitrf_Log  <- caret::train(Type~., data=trainingDataset.df_Log , method="rf", metric=metric, trControl=control, verbose = TRUE)
 fitrf_VST  <- caret::train(Type~., data=trainingDataset.df_VST , method="rf", metric=metric, trControl=control, verbose = TRUE)
 ```
-```
-Agrégation et affichage des résultats des tests de comparaison avec fonction resamples()
-```
+
+#### Agrégation et affichage des résultats des tests de comparaison avec fonction resamples()
+
 
 
 ```r
@@ -224,10 +224,12 @@ rf_VST        0.8241206 0.8372574 0.8757434 0.8798831 0.9245392 0.9257562    0
 ```
 
 ```
-Avec cette vue de tous les lignes et 7 premières colonnes (de 37) des résultats de comparaison, nous
-pouvons voir qu’il y a bien eu « 10 folds » de la « K-fold cross-validation » pour chaque 
+Avec la vue suivante de tous les lignes et 7 premières colonnes (de 37) des résultats de comparaison, 
+nous pouvons voir qu’il y a bien eu « 10 folds » de la « K-fold cross-validation » pour chaque 
 modèle de classification testé.
 ```
+
+
 
 ```r
 kable(results$values[,1:7],"rst")
@@ -248,9 +250,9 @@ Fold09       0.9875000  0.9749687         0.9875000      0.9749687         0.987
 Fold10       0.9125000  0.8245614         0.9750000      0.9499687         0.9750000      0.9499687
 ========  ============  =========  ================  =============  ================  =============
 ```
-```
-Un beau boxplot plus gentil pour l'oeil que des colonnes de chiffres pour les resultats 
-```
+
+#### Un beau boxplot plus gentil pour l'oeil que des colonnes de chiffres pour les resultats 
+
 
 ```r
 scales <- list(x=list(relation="free"), y=list(relation="free"))
@@ -268,21 +270,18 @@ peloton « rf » avec normalisation VST et essayer d’améliorer ses résultats
 paramètres. 
 ```
 
-#################################################################################
-## Support Vector Machines (SVM) avec "linear kernel"
+***
+
+## Code et resultats que pour svmLinear_VST (svm "linear kernel" et normalisation VST)
 
 
 ```r
 #Le "seed" du nombre aléatoire garantit que les résultats sont directement comparables.
 set.seed(1234)
-
-fitsvmLinear <- caret::train(Type~., data=trainingDataset.df , method='svmLinear', metric=metric, trControl=control)
+fitsvmLinear_VST <- caret::train(Type~., data=trainingDataset.df_VST , method='svmLinear', metric=metric, trControl=control)
+fitsvmLinear_VST
 ```
 
-
-```r
-fitsvmLinear
-```
 ```
 Support Vector Machines with Linear Kernel 
 
@@ -300,15 +299,43 @@ Resampling results:
 
 Tuning parameter 'C' was held constant at a value of 1
 ```
+#### Voir les paramètres du modèle final SVM.
 
+
+```r
+fitsvmLinear_VST$finalModel
+```
+```
+Support Vector Machine object of class "ksvm" 
+
+SV type: C-svc  (classification) 
+ parameter : cost C = 1 
+
+Linear (vanilla) kernel function. 
+
+Number of Support Vectors : 201 
+
+Objective Function Value : -0.0118 
+Training error : 0 
+```
 
 ```
-Alternatively, for models where no built-in importance score is implemented (or exists), the varImp can still be used to get scores. For SVM classification models, the default behavior is to compute the area under the ROC curve.
+Il serait intéressant de voir les « gènes » qui influence le plus le modèle entrainé mais
+les SVM n’ont pas de score d’importance.  
+
+Pour les modèles où aucun score d'importance est intégré, implémenté ou n'existe pas, la
+fonction varImp() de caret peut être utilisé pour obtenir des scores. Pour les 
+modèles de classification SVM, le processus par défaut consiste à calculer l'aire
+sous la courbe ROC (receiver operating characteristic curve) our aider à démontrer les 
+performances de classification du modèle.
+
+L'importance (%) quantifie seulement l'impact du prédicteur, pas l'effet spécifique.
 ```
 
 
 ```r
-rocImpfitSVM <- varImp(fitsvmLinear, scale = FALSE)
+rocImpfitSVM <- varImp(fitsvmLinear_VST, scale = FALSE)
+rocImpfitSVM
 ```
 
 ```
@@ -339,16 +366,120 @@ ENSG00000127824.12     0.8625
 ENSG00000068912.12     0.8622
 ```
 
+#### En graphique
+
+
+```r
+plot(rocImpfitSVM, top = 20)
+```
+
 ![](figures/RocImpFit_SVM_01.png)
-
-
 
 ***
 
-## Random Forest (RF)
+## Code et resultats que pour fitrf_VST (Random Forest et normalisation VST)
+
 
 ```r
+#Le "seed" du nombre aléatoire garantit que les résultats sont directement comparables.
 set.seed(1234)
-fitrf <- caret::train(Type~., data=trainingDataset.df , method="rf", metric=metric, trControl=control, verbose = TRUE)
+fitrf_VST  <- caret::train(Type~., data=trainingDataset.df_VST , method="rf", metric=metric, trControl=control, verbose = TRUE)
+fitrf_VST
+```
+```
+Random Forest 
+
+  801 samples
+11057 predictors
+    2 classes: 'HNSC', 'LUSC' 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 721, 722, 720, 720, 721, 721, ... 
+Resampling results across tuning parameters:
+
+  mtry   Accuracy   Kappa    
+      2  0.9213410  0.8422526
+    148  0.9325756  0.8648155
+  11057  0.9400760  0.8798831
+
+Accuracy was used to select the optimal model using the largest value.
+The final value used for the model was mtry = 11057.
+```
+#### Voir les paramètres du modèle final RF.
+
+
+```r
+fitrf_VST$finalModel
+```
+```
+Call:
+ randomForest(x = x, y = y, mtry = param$mtry, verbose = TRUE) 
+               Type of random forest: classification
+                     Number of trees: 500
+No. of variables tried at each split: 11057
+
+        OOB estimate of  error rate: 6.49%
+Confusion matrix:
+     HNSC LUSC class.error
+HNSC  353   36  0.09254499
+LUSC   16  396  0.03883495
 ```
 
+```
+Il serait intéressant aussi de voir les « gènes » qui influence le plus le modèle RF entrainé. Comme
+pour le SVM. Ayant pas mis le pramametre importance=TRUE lors de l'entrainement je le fais apres coup.
+
+Note: La valeur d'importance de Random Forest est une mesure agrégée. (d'ou qu'une valeur de plus que 100 
+est possible). Cette valeur quantifient seulement l'impact du prédicteur, pas l'effet spécifique.
+``` 
+
+```r
+rocImpfitrf_VST <- varImp(fitrf_VST, scale = FALSE)
+rocImpfitrf_VST
+```
+```
+rf variable importance
+
+  only 20 most important variables shown (out of 11057)
+
+                   Overall
+ENSG00000116871.14 105.105
+ENSG00000105355.7   36.896
+ENSG00000175416.11  36.040
+ENSG00000175793.11  24.687
+ENSG00000160789.18   9.573
+ENSG00000197249.11   9.014
+ENSG00000196544.7    6.394
+ENSG00000006744.17   5.965
+ENSG00000123080.9    4.803
+ENSG00000188522.13   4.107
+ENSG00000082014.15   3.752
+ENSG00000163995.17   2.575
+ENSG00000119318.11   2.496
+ENSG00000198759.10   2.432
+ENSG00000150540.12   2.095
+ENSG00000151881.13   1.933
+ENSG00000131471.5    1.855
+ENSG00000050555.16   1.685
+ENSG00000145911.5    1.323
+ENSG00000132361.15   1.244
+```
+
+#### En graphique
+
+
+```r
+plot(rocImpfitrf_VST, top = 20, col="red")
+```
+
+![](figures/RocImpFit_RF_01.png)
+
+
+#### Avec les données côte à côte, nous pouvons voir que les 6 top valeurs d’importance des deux modèles se retrouvent dans les deux
+
+![](figures/SVM_RF_Imp_01.png)
+
+***
+
+## Fin section Entrainement des modèles de machine learning.
