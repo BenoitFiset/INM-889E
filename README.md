@@ -52,10 +52,13 @@ Le projet à été fait en R avec les libraires suivantes:
     + Lien Rapide: [Compte final des jeu de donnés](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#compte-final)
     + Lien Rapide: [Bonus - Autre Normalistion Log Naturel](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#bonus) (Git fonctionne mal pour un lien rapide de fin de page. Faut descendre.)
   + Section 4 - [Entrainement](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md)
-    + Lien Rapide: [Comparaison des performances de 6 algorithmes]()
-    + Lien Rapide: [BoxPlot des resultats de test de performance et choix]()
-    + Lien Rapide: [Test poour tenter d'améliorer la précision]()
-    + Lien Rapide: [Resultats et conclusion de ces tests d'amélioration de la précision]()
+    + Lien Rapide: [Comparaison des performances de 6 algorithmes](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#comparaison-des-performances-de-6-algorithmes-de-ml-avec-des-diff%C3%A9rentes-normalisations-des-donn%C3%A9es![image](https://user-images.githubusercontent.com/33760704/116828786-f62f9d80-ab6e-11eb-96c7-afb63df07349.png)
+)
+    + Lien Rapide: [BoxPlot des resultats de test de performance et choix](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#un-beau-boxplot-plus-gentil-pour-loeil-que-des-colonnes-de-chiffres-pour-les-resultats![image](https://user-images.githubusercontent.com/33760704/116828784-f039bc80-ab6e-11eb-88d8-2fbbd810e766.png)
+)
+    + Lien Rapide: [Test poour tenter d'améliorer la précision](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#essayons-dam%C3%A9liorer-la-pr%C3%A9cision-du-mod%C3%A8le-fitrf_vst-pour-avoir-une-pr%C3%A9cision-de-plus-que-94-avec-les-param%C3%A8tres-traincontrol-de-caret![image](https://user-images.githubusercontent.com/33760704/116828782-e9ab4500-ab6e-11eb-8871-945c986fdcec.png)
+)
+    + Lien Rapide: [Resultats et conclusion de ces tests d'amélioration de la précision](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#agr%C3%A9gation-des-r%C3%A9sultats-pour-comparaison-des-2-tests-dessai-daugmentation-de-pr%C3%A9cision)
   + Section 5 - [Prédictions]
   + Section 6 - [Résultats]
 
