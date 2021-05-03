@@ -196,10 +196,13 @@ str(fileList)
 
 
 ```r
+locationOfFiles <- "./UnzippedFiles"
+
 read_in_feature_counts<- function(file){
   cleanFilename <- str_replace(str_replace(file,paste(locationOfFiles,"/",sep=""),""),".tsv",".gz")
   Barcode_Name <- toString(TCGA_Barcodes[TCGA_Barcodes$Filename==cleanFilename,2])
-  cnt<- read_tsv(file, col_names = c("Genes",Barcode_Name), comment = c("__"))
+  # comment parameter = remove last 5 lines of HTSeqCount which stat with --
+  cnt<- read_tsv(file, col_names = c("Genes",Barcode_Name), comment = c("__"))  
   return(cnt)
 }
 ```
