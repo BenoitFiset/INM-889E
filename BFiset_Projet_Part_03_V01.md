@@ -8,11 +8,13 @@ output:
 ---
 
 <style type="text/css">
+/*https://stackoverflow.com/questions/38367392/override-rmarkdown-theme-in-order-to-change-html-page-width/38373846*/
 body .main-container {
   max-width: 1100px !important;
   width: 1100px !important;
 }
 body {
+  margin: auto;
   max-width: 1100px !important;
 }
 </style>
@@ -25,7 +27,7 @@ body {
 
 ## Sur l'ordinateur personnel:
 
-### But de la section: Filtrage, Découpe ("Training / Test sets"), Normalisation, Indice de Corrélation - Tumeurs et Normale
+### But de la section: Filtrage, Découpe ("Training / Test sets"), Normalisation, Indice de Corrélation - Tumeurs et Normaux
 ```
 library (DESeq2)    #VST
 library(knitr)      #kable
@@ -77,7 +79,7 @@ ENSG00000000460.15               229               297              3479        
 ```
 
 
-#### Filtrage des gènes qui on plus de 95% de 0 comme compte. 
+#### Filtrage des gènes qui ont plus de 95% de 0 comme compte. 
 
 ```r
 percentFilterZero = 95
@@ -111,7 +113,7 @@ ENSG00000199870.1      99.9002       1001
 ```
 
 
-#### Dans ce graph, suivant, des distibution des comptes des gènes, nous povons voir qu'il y a beaucoup de gènes (100%) qui ont un compte de 0. Donc enlevons de la ligne rouge "95%" et plus.
+#### Dans le graph suivant, des distibutions des comptes des gènes, nous pouvons voir qu'il y a beaucoup de gènes (100%) qui ont un compte de 0. Donc enlevons de la ligne rouge "95%" et plus.
 
 
 ```r
@@ -124,7 +126,7 @@ ggplot(data=percentZeros.df,aes(x=percentZerosCount)) +  geom_histogram(binwidth
 ![](figures/Plot_95_01.png)
 
 
-#### Filtrage des gènes qui ont moins de 1% de comptes pour tout les èchantillions.
+#### Filtrage des gènes qui ont moins de 1% de comptes pour tout les échantillions.
 
 ```r
 # Filter Genes that have less than 1% of counts
@@ -153,7 +155,7 @@ FALSE  TRUE
 ```
 
 
-#### Inversion pour que TRUE = Garder gènes  et FALSE = Enlever gènes 
+#### Inversion pour que TRUE = Garder gènes et FALSE = Enlever gènes 
 
 ```r
 # Reverse the TRUE / FALSE to put TRUE to keep the good Genes
@@ -195,7 +197,7 @@ dim(cleanCountData)
 ```
 ***
 
-## Ajouter d'une colonne pour identifier le Type de l’échantillon.
+## Ajouter une colonne pour identifier le Type de l’échantillon.
 
 #### Ceci est nécessaire pour l’entrainement des modèles de machine learning.
 
@@ -254,7 +256,7 @@ LUSC.66.2781.01A  LUSC                4255                5514                11
 
 ***
 
-## Decoupage de des donnees en 80% Training et 20% Test
+## Découpage de des données en 80% Training et 20% Test
 
 
 ```r
@@ -382,7 +384,7 @@ legend("topleft",
 
 ***
 
-## Filtrage des échantillons qui ont un coefficient de corrélation de plus de 98%.
+## Filtrage des échantillons qui ont un coefficient de corrélation de plus de 98% du jeu Training
 
 
 ```r
@@ -414,7 +416,7 @@ print(highlyCorrelated)
 ```
 [1] "ENSG00000173372.15" "ENSG00000002933.6"  "ENSG00000108821.12" "ENSG00000159189.10"
 ```
-#### Validation des résultats de la fonction findCorrelation en réduisant la dimension de la matrice de corrélation et en faisant une recherche les valeurs (X > 0.97 & X != 1). Donc 98% et pas lui-même (1) 
+#### Validation des résultats de la fonction findCorrelation en réduisant la dimension de la matrice de corrélation et en faisant une recherche des valeurs (X > 0.97 & X != 1). Donc 98% et pas lui-même (1) 
 
 ```r
 # melt the coreelation matrix to a smaller dimension data frame - easier for the sanity of the user !
@@ -425,7 +427,7 @@ print(validCorrelationMatrix)
 ```
 
 
-#### Cette méthode de validation montre au moins les noms des gènes corrélées et les autres choix qui auraient été possible d’enlever.
+#### Cette méthode de validation montre au moins les noms des gènes corrélées et les autres options qui auraient été possible d’enlever.
 ```
                        Var1               Var2 value
 256749   ENSG00000106565.16  ENSG00000002933.6  0.98
@@ -438,7 +440,7 @@ print(validCorrelationMatrix)
 93241598 ENSG00000173369.14 ENSG00000173372.15  0.98
 ```
 
-#### Nombre d'échantillons avant d'enlever ls gènes hautement corrélées
+#### Nombre d'échantillons avant d'enlever les gènes hautement corrélés
 
 ```r
 dim(trainingDataset.df)
@@ -453,7 +455,7 @@ dim(trainingDataset.df)
 trainingDataset.df <- trainingDataset.df[ , ! names(trainingDataset.df) %in% highlyCorrelated ] 
 ```
 
-#### Nombre d'échantillons après enlever les gènes hautement corrélées
+#### Nombre d'échantillons après avoir enlevé les gènes hautement corrélées
 
 
 ```r
@@ -472,13 +474,32 @@ dim(trainingDataset.df)
 
 ### Décompte des échantillons qui serviront pour l’entrainement et les tests des modèles du projet par type d'échantillion
 
+
+```r
+par(mfrow=c(2,1))
+my.barplot <- barplot(table(trainingDataset.df[,"Type"]), main='Nombre d’échantillons pour "Training"')
+text(my.barplot,(table(trainingDataset.df$Type)/2), paste("n: ", table(trainingDataset.df$Type), sep="") ,cex=1) 
+
+my.barplot <- barplot(table(testDataset.df[,"Type"]), main='Nombre d’échantillons pour "Test"')
+text(my.barplot,(table(testDataset.df$Type)/2), paste("n: ", table(testDataset.df$Type), sep="") ,cex=1) 
+
+par(mfrow=c(1,1))
+```
+
 ![](figures/Final_Count_DataSets_01.png)
+
+### Changer les noms des jeux de données Training et Test pour des noms qui reflète leur contenu.
+
+```r
+trainingDataset.df_VST <- trainingDataset.df
+testDataset.df_VST <- testDataset.df
+```
 
 ***
 ***
 ## Bonus
 
-#### Autre code qui a été utilisé pour faire un autre type de normalisation (log naturel) des données qui ont été utilisés pour une expérience parelle de comparaison des performances de 6 algorithmes de machine learning. Fait pour jeu Training et Test. Ceci remplaçait la normalisation VST dans le workflow.
+#### Autre code qui a été utilisé pour faire un autre type de normalisation (log naturel) des données qui ont été utilisées pour une expérience parelle de comparaison des performances de 6 algorithmes de machine learning. Fait pour jeu Training et Test. Ceci remplaçait la normalisation VST dans le workflow (voir plus haut).
 
 
 ```r
@@ -490,3 +511,16 @@ testDataset.df <- log(testDataset.df[,-1]) # Normalize without the Type Column
 substrColName = function(x){ substr(x,1,4) }   # Need This function for apply in next line
 testDataset.df <- cbind(Type=apply(as.matrix(rownames(testDataset.df)),1,substrColName),testDataset.df)
 ```
+
+### Changer les noms des jeux de données Training et Test pour des noms qui reflète leur contenu.
+
+
+```r
+trainingDataset.df_Log <- trainingDataset.df
+testDataset.df_Log <- testDataset.df
+```
+
+
+***
+
+## Fin section Filtrage, Découpe ("Training / Test sets"), Normalisation, Indice de Corrélation - Tumeurs et Normaux
