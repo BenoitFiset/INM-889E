@@ -5,7 +5,7 @@ Repo pour le cours INM 889E - Projet de ML
 
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
 
-* Vu la taille des fichier et le temps de calcul nécessaire une partie du traitement des fichiers ont été effectués sur des serveurs HPC de Calcul Québec (Béluga et Graham):
+* Vu la taille des fichiers et le temps de calcul nécessaire une partie du traitement des fichiers ont été effectués sur des serveurs HPC de Calcul Québec (Béluga et Graham):
   + Le téléchargement des fichiers incluant le regroupement et décompression
   + Le regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs
   + Le regroupement des fichiers individuels en une matrice unifié de comptes - Normale
@@ -17,7 +17,7 @@ Repo pour le cours INM 889E - Projet de ML
   + Le filtrage des genes qui ont comportent plus de 95% de comptes de valeur 0
   + Le filtrage des genes qui ont moins de 1% de comptes
   + La creation de le colonne qui sera la “Classe” du projet. Se nomme “Type”
-  + Le découpage du jeu de donnes “Training”  80% et “Test” 20%. 
+  + Le découpage du jeu de données “Training”  80% et “Test” 20%. 
   + Normalisation des données “Training” avec VST de DESeq2
   + Normalisation des données “Test” avec VST de DESeq2
   + Normalisation des données “Normale” avec VST de DESeq2
@@ -49,7 +49,7 @@ Le projet à été fait en R avec les libraires suivantes:
     + Lien Rapide: [Découpage Training / Test](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#decoupage-de-des-donnees-en-80-training-et-20-test)
     + Lien Rapide: [Normalisation VST](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#normalisation-avec-vst-de-deseq2)
     + Lien Rapide: [Filtrage des ind. corrélation](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-%C3%A9chantillons-qui-ont-un-coefficient-de-corr%C3%A9lation-de-plus-de-98)
-    + Lien Rapide: [Compte final des jeu de donnés](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#compte-final)
+    + Lien Rapide: [Compte final des jeux de donnés](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#compte-final)
     + Lien Rapide: [Bonus - Autre Normalistion Log Naturel](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#bonus) (Git fonctionne mal pour un lien rapide de fin de page. Faut descendre.)
   + Section 4 - [Entrainement](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md)
     + Lien Rapide: [Comparaison des performances de 6 algorithmes](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#comparaison-des-performances-de-6-algorithmes-de-ml-avec-des-diff%C3%A9rentes-normalisations-des-donn%C3%A9es)
@@ -59,7 +59,7 @@ Le projet à été fait en R avec les libraires suivantes:
   + Section 5 - [Prédictions]
   + Section 6 - [Résultats]
 
-### Note:  Le jeu de donnés d’échantillons Normale sera utilisé pour tester les prédictions des modèle. Ici le modèle fera des prédictions sur le type de cancer HNSC vs LUSC et non “Tumeur” vs “Normale”. Le jeu de donnés Normale comporte le type de cancer HNSC et LUSC dans son metadata.**
+### Note:  Le jeu de données d’échantillons Normaux sera utilisé pour tester les prédictions des modèles. Ici le modèle fera des prédictions sur le type de cancer HNSC vs LUSC et non “Tumeur” vs “Normale”. Le jeu de données Normales comporte le type de cancer HNSC et LUSC dans son metadata.**
 
 
 ***
