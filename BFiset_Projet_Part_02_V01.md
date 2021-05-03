@@ -45,12 +45,20 @@ set.seed(1234) # Important pour toujours avoir les memes resultats
 
 ```r
 TCGA_SampleDict <- read.table("gdc_sample_sheet.2021-04-26.tsv", sep ="\t", header=TRUE, stringsAsFactors = FALSE )
+
+head(TCGA_SampleDict)
 ```
+
+![](figures/TCGA_SampleDict_01.png)
 
 #### Nous pouvons voir les comptes des échantillions par type:
 
 ```r
-table(TCGA_SampleDict$Sample.Type)
+print(table(TCGA_SampleDict$Sample.Type))
+```
+```
+         Metastatic       Primary Tumor Solid Tissue Normal 
+                  2                1002                  93 
 ```
 
 #### Création d’une nouvelle colonne « BarCode » qui contiendra la concaténation du type de cancer et le nom de l’échantillon.
@@ -62,7 +70,7 @@ TCGA_SampleDict$BarCode <- str_replace(TCGA_SampleDict$Sample.ID,"TCGA",str_sub(
 TCGA_SampleDict$BarCode <- str_replace_all(TCGA_SampleDict$BarCode,"-",".")
 ```
 
-#### Filtrer les fichiers par type d’échantillon:
+#### Filtrer les fichiers par type d’échantillon. Ne garde pas les 2 "Metastatic"
 
 ```r
 # Extract the data subsets by type.
