@@ -51,7 +51,7 @@ Le projet à été fait en R avec les libraires suivantes:
     + Lien Rapide: [Filtrage des ind. corrélation](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-%C3%A9chantillons-qui-ont-un-coefficient-de-corr%C3%A9lation-de-plus-de-98)
     + Lien Rapide: [Compte final des jeux de donnés](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#compte-final)
     + Lien Rapide: [Filtrage et normalisation VST du jeu de test normale](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-et-normalisation-vst-du-jeu-de-test-normale)
-    + Lien Rapide: [Bonus - Autre Normalistion Log Naturel](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#bonus) (Git fonctionne mal pour un lien rapide de fin de page. Faut descendre.)
+    + Lien Rapide: [Bonus - Autre Normalistion Log Naturel](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#bonus)
   + Section 4 - [Entrainement](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md)
     + Lien Rapide: [Comparaison des performances de 6 algorithmes](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#comparaison-des-performances-de-6-algorithmes-de-ml-avec-des-diff%C3%A9rentes-normalisations-des-donn%C3%A9es)
     + Lien Rapide: [BoxPlot des resultats de test de performance et choix](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_04_V01.md#un-beau-boxplot-plus-gentil-pour-loeil-que-des-colonnes-de-chiffres-pour-les-resultats)
