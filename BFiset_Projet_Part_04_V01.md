@@ -26,7 +26,7 @@ body {
 ***
 
 ### But de la section : Entrainement des modèles de machine learning. 
-### Pour le projet les algorithmes de prediction **SVM** et **randomForest** seront utilisés apres un test de sélection.
+### Pour le projet les algorithmes de prediction **SVM** et **randomForest** seront utilisés après un test de sélection.
 
 ### Sur serveur HPC:
 ```
@@ -58,7 +58,7 @@ du modèle et méthode choisi. C'est vraiment un "couteau suisse" pour créer de
 
 Ceci permet l’entrainement des modèles pour bénéficier du parallélisme des serveurs haute performance. L’utilisation de 32 CPU aide énormément à réduire le temps nécessaire pour entrainer les modèles. 
 
-Exemple, avec 32 CPU, l’entrainement de Random Forest prends presque 2 heures. Lorsque essayé avec ordinateur personnel, en utilisant l’équivalent de 5 CPU, l’entrainement n’était pas fini après 18 heures de calculs !!
+Exemple, avec 32 CPU, l’entrainement de Random Forest prend presque 2 heures. Lorsque essayé avec ordinateur personnel, en utilisant l’équivalent de 5 CPU, l’entrainement n’était pas fini après 18 heures de calculs !!
 
 
 
@@ -68,7 +68,7 @@ cl <- makeCluster(32, type='PSOCK', outfile="OutCaret.txt")
 registerDoParallel(cl)
 ```
 
-Une des forces du package caret et de pouvoir directement influencer l’entrainement du modèleavec des paramètres d‘optimisation dès le début.  Ceci veut dire que qu’au lieu de débuter avec les paramètres de base pour le premier entrainement et plus tard essayer d’optimiser les performances, nous pouvons déjà dès le début dire au model d’essayer de trouver le meilleur modèle de prédiction en utilisant des variances des métriques d’influences.
+Une des forces du package caret et de pouvoir directement influencer l’entrainement du modèle avec des paramètres d‘optimisation dès le début. Ceci veut dire que qu’au lieu de débuter avec les paramètres de base pour le premier entrainement et plus tard essayer d’optimiser les performances, nous pouvons déjà dès le début dire au model d’essayer de trouver le meilleur modèle de prédiction en utilisant des variances des métriques d’influences.
 
 La fonction de caret qui permet cela est trainControl() qui génère les paramètres qui permettent de contrôler comment les modèles optimisés sont créés.  Des options possibles dont des « bootstrap », « K-fold cross-validation », « Leave One Out cross-validation, « Repeated K-fold cross-validation », etc..
 
@@ -84,7 +84,7 @@ control <- trainControl(method="cv", number=10, allowParallel = TRUE, verboseIte
 metric <- "Accuracy"
 ```
 
-# 
+
 ## Comparaison des performances de 6 algorithmes de ML avec des différentes normalisations des données
 
 
@@ -92,10 +92,10 @@ J'ai fait des tests de comparaison avec 6 modèles de classifications pour faire
 
 Il y a eu 3 rondes d’entrainement pour les 6 modèles :
 
-* Une avec les données NON normalises (« raw RNAseq counts)
-* Une avec les données normalises avec la fonction R Log() = Logarithme Naturel
+* Une avec les données NON normalisées (« raw RNAseq counts)
+* Une avec les données normalisées avec la fonction R Log() = Logarithme Naturel
   * "Bonus" de la section 3
-* Une avec les données normalises avec la fonction VST de DESeq2 (Section 3)
+* Une avec les données normalisées avec la fonction VST de DESeq2 (Section 3)
 
 
 ```r
@@ -302,7 +302,7 @@ Training error : 0
 ```
 
 
-Il serait intéressant de voir les « gènes » qui influence le plus le modèle entrainé mais les SVM n’ont pas de score d’importance.  
+Il serait intéressant de voir les « gènes » qui influencent le plus le modèle entrainé mais les SVM n’ont pas de score d’importance.  
 
 Pour les modèles où aucun score d'importance est intégré, implémenté ou n'existe pas, la fonction varImp() de caret peut être utilisé pour obtenir des scores. 
 
@@ -407,7 +407,7 @@ HNSC  353   36  0.09254499
 LUSC   16  396  0.03883495
 ```
 
-Il serait intéressant aussi de voir les « gènes » qui influence le plus le modèle RF entrainé. Comme pour le SVM. Ayant pas mis le pramametre importance=TRUE lors de l'entrainement je le fais apres coup.
+Il serait intéressant aussi de voir les « gènes » qui influence le plus le modèle RF entrainé. Comme pour le SVM. Ayant pas mis le pramametre importance=TRUE lors de l'entrainement je le fais après coup.
 
 Note: La valeur d'importance de Random Forest est une mesure agrégée. (d'ou qu'une valeur de plus que 100 est possible). Cette valeur quantifie seulement l'impact du prédicteur, pas l'effet spécifique.
 
@@ -464,10 +464,10 @@ plot(rocImpfitrf_VST, top = 20, col="red")
 
 Au lieu de prendre le « K-fold cross-validation » je vais essayer avec « Repeated K-fold cross-validation » qui a un paramètre de plus : « repeats » qui permet de refaire le « K-fold cross-validation » un certain nombre de fois.  
 
-Le package caret permet de chercher les hyperparamètres d’optimisation au hasard. Il permet 2 styles : le premier, complètement au hasard (search=random) ou le deuxième au hasard mais d’une grille de valeurs donnée (search=grid). Je vais faire les 2 méthodes. Ceci est le paramètre « search » de la fonction caret ::trainControl()
+Le package caret permet de chercher les hyperparamètres d’optimisation au hasard. Il permet 2 styles : le premier, complètement au hasard (search=random) ou le deuxième au hasard mais d’une grille de valeurs données (search=grid). Je vais faire les 2 méthodes. Ceci est le paramètre « search » de la fonction caret ::trainControl()
 
 Le modèle Random Forest utilise le paramètre « mtry » comme variable pour se raffiner. Cette variable permet de choisir le nombre de variables échantillonnées aléatoirement comme 
-candidats à chaque division de l’arbre de décision. Pour (search=grid) il faut donner un grille de valeurs. Ceci est fait avec la structure « tunegrid » qui est utilisé par le paramètre « tuneGrid » de la fonction caret ::train().
+candidats à chaque division de l’arbre de décision. Pour (search=grid) il faut donner une grille de valeurs. Ceci est fait avec la structure « tunegrid » qui est utilisé par le paramètre « tuneGrid » de la fonction caret ::train().
 
 ### Méthode: Grid Search
 
@@ -536,7 +536,7 @@ plot(rf_gridsearch)
 
 ### Méthode: Random Search
 
-Pour (search=random) il faut le paramètre « tuneLength » qui est nombre total de combinaisons aléatoire de paramètres (mtry) de réglage uniques à générer. C’est le paramètre « tuneLength » de la fonction caret::train().
+Pour (search=random) il faut le paramètre « tuneLength » qui est nombre total de combinaisons aléatoires de paramètres (mtry) de réglages uniques à générer. C’est le paramètre « tuneLength » de la fonction caret::train().
 
 ```
 Note: Cette section de code, avec 32 CPU prends un peu moins de 3 heures de calcul 
@@ -621,7 +621,7 @@ rf_gridsearch_vst 0.7741531 0.8309209 0.8506833 0.8630206 0.8998121 0.9499061   
 rf_random_vst     0.7996243 0.8247810 0.8746081 0.8722833 0.9181104 0.9499687    0
 ```
 
-#### Voici les résultats de la première itération qui donnais un mtry = 11057 et 94% de précision. 
+#### Voici les résultats de la première itération qui donnait un mtry = 11057 et 94% de précision. 
 
 Notez que je ne peux agréger les 3 avec la fonction resamples() car la première itération a « 10 folds » et ces 2 derniers tests en ont 15, donc non compatible pour la fonction.
 
@@ -640,7 +640,7 @@ rf_VST        0.8241206 0.8372574 0.8757434 0.8798831 0.9245392 0.9257562    0
 
 ####  Je n’ai pas réussi d’augmenter la précision avec ces 2 techniques. J’aurais pu m’acharner plusieurs semaines pour trouver les bons paramètres pour avoir une meilleure précision, mais faute de temps, ceci sera une démonstration qu’il existe des méthodes pour trouver des optimisations pour tenter d’augmenter la précision des modèles. 
 
-#### Donc, nous resterons avec les valeurs de l’entrainement initial qui avait donné un mtry = 11057 avec un pourcentage de précision de 0.9400760 pour la prochaine étape de prédiction avec le jeu des données Test et Normale.
+#### Donc, nous resterons avec les valeurs de l’entrainement initial qui avait donné un mtry = 11057 avec un pourcentage de précision de 0.9400760 pour la prochaine étape de prédiction avec le jeu des données Test et Normal.
 
 
 ***

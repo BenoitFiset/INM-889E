@@ -182,7 +182,7 @@ dim(rawCountData)
 ####  Appliquer le filtrage 
 
 ```r
-# This Filters the genes taht don't pass the more tnat 95% 0 and have less that 1% of counts.
+# This Filters the genes that don't pass the more tnat 95% 0 and have less that 1% of counts.
 cleanCountData <- rawCountData[filteredGenes, ]
 ```
 
@@ -488,18 +488,140 @@ par(mfrow=c(1,1))
 
 ![](figures/Final_Count_DataSets_01.png)
 
+***
+# Filtrage et normalisation VST du jeu de test normale.
+
+#### Voici le code "directe" avec un minimums de sorties et explications.  
+
+
+```r
+Filename <- "Normal_Merged_2Lung_Counts.tsv"
+rawCountData <- read.table(Filename, header=TRUE, row.names=1)
+percentFilterZero = 95
+percentZerosCount <- 100*apply(rawCountData == 0, 1, sum) / ncol(rawCountData) # If Gene Count = 0 add 1 them sum all * 100 then / by number of columns 
+
+percentZeros.df <- data.frame(PercentZero=percentZerosCount, TotalZero=apply(rawCountData == 0, 1, sum))
+
+# Filter Genes that have less than 1% of counts
+geneMinCount = round((0.01 * ncol(rawCountData)))
+
+# Find the Min Gene count of that Gene
+minGeneCount <- apply(rawCountData, 1, min)
+
+# Create a TRUE / FALSE where TRUE is to remove that Gene
+toFilterGenes <- (percentZerosCount > percentFilterZero) | (minGeneCount < geneMinCount) 
+
+# Reverse the TRUE / FALSE to put TRUE to keep the good Genes
+filteredGenes <- !toFilterGenes 
+
+print(table(filteredGenes))
+```
+```
+filteredGenes
+FALSE  TRUE 
+43057 17426 
+```
+
+```r
+print (dim(rawCountData))
+```
+```
+[1] 60483    93
+```
+
+```r
+# This Filters the genes that don't pass the more tnat 95% 0 and have less that 1% of counts.
+cleanCountData <- rawCountData[filteredGenes, ]
+```
+
+```r
+print (dim(cleanCountData))
+```
+```
+[1] 60483    93
+```
+
+```r
+# Function to return a substring, here the 4 first chars of the string sent as parameter (Ex: HNSC, LUSC)
+substrColName = function(x){ substr(x,1,4) }
+
+cleanCountDataMat <- as.matrix(cleanCountData)
+# kable(cleanCountDataMat[1:10,43:47],"rst")
+
+# Crate dataframe and Type column
+df.data <- data.frame(Type=apply(as.matrix(rownames(t(cleanCountDataMat))),1,substrColName), t(cleanCountDataMat) )
+
+#kable(df.data[40:49,1:6],"rst")
+```
+
+
+```r
+#DESeq2 VST Normalization - Normale
+normalDataset.df <- df.data
+
+condition <- condition <- factor(normalDataset.df$Type)
+tempDDSdftoMat <- as.matrix(t(normalDataset.df[,-1]))   # Transpose and Convert Normal Data Frame to Matrix without the Type column
+coldata <- data.frame(row.names=colnames(tempDDSdftoMat), condition)
+
+dds <- DESeqDataSetFromMatrix(countData=tempDDSdftoMat, colData=coldata, design=~condition)
+
+data_VST <- varianceStabilizingTransformation(dds, blind = TRUE, fitType = "parametric")
+
+vstData <- t(assay(data_VST))
+# Reinsert Type Column a begining
+normalDataset.df <- data.frame(Type=apply(as.matrix(rownames(vstData)),1,substrColName),vstData) 
+```
+
+#### Visualisation de la projection PCA des échantillions Normale
+
+
+```r
+pca.res <- PCA(normalDataset.df[, -1], graph = FALSE)
+
+vcol.set <- rep("blue", length = nrow(normalDataset.df))
+vcol.set[which(grepl("HNSC",normalDataset.df$Type))] <- "magenta"
+
+plot(pca.res, 
+     habillage = "ind", 
+     col.hab = vcol.set, graph.type = "classic",
+     label = "none")
+legend("topleft",
+       legend = c("LUSC", 
+                  "HNSC"),
+       col = c("blue","magenta"), pch = 19)
+```
+
+![](figures/PCA_Normal_01.png)
+
+### Décompte des échantillons normaux qui serviront pour tester les modèles du projet.
+
+
+```r
+par(mfrow=c(2,1))
+my.barplot <- barplot(table(normalDataset.df[,"Type"]), main='Nombre d’échantillons pour "Normale"')
+text(my.barplot,(table(normalDataset.df$Type)/2), paste("n: ", table(normalDataset.df$Type), sep="") ,cex=1) 
+par(mfrow=c(1,1))
+}
+```
+
+![](figures/Final_Count_DataSets_Normal_01.png)
+
+***
+***
+
 ### Changer les noms des jeux de données Training et Test pour des noms qui reflète leur contenu.
 
 ```r
 trainingDataset.df_VST <- trainingDataset.df
 testDataset.df_VST <- testDataset.df
+normalDataset.df_VST <- normalDataset.df
 ```
 
 ***
 ***
 ## Bonus
 
-#### Autre code qui a été utilisé pour faire un autre type de normalisation (log naturel) des données qui ont été utilisées pour une expérience parelle de comparaison des performances de 6 algorithmes de machine learning. Fait pour jeu Training et Test. Ceci remplaçait la normalisation VST dans le workflow (voir plus haut).
+#### Autre code qui a été utilisé pour faire un autre type de normalisation (log naturel) des données qui ont été utilisées pour une expérience parelle de comparaison des performances de 6 algorithmes de machine learning. Fait pour jeu Training et Test. Ceci remplaçait la normalisation VST dans le workflow (voir plus haut). Note: pas fait pour le jeu de test Normale.
 
 
 ```r

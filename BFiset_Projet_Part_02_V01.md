@@ -7,7 +7,18 @@ output:
     keep_md: yes
 ---
 
-<!-- if you want to keep only markdown and get GitHub-flavored markdown. In that case, make your YAML look like this: output: github_document -->
+<style type="text/css">
+/*https://stackoverflow.com/questions/38367392/override-rmarkdown-theme-in-order-to-change-html-page-width/38373846*/
+body .main-container {
+  max-width: 1100px !important;
+  width: 1100px !important;
+}
+body {
+  margin: auto;
+  max-width: 1100px !important;
+}
+</style>
+
 
 
 
@@ -17,7 +28,7 @@ output:
 
 ## Sur le serveur HPC:
 
-### But de la section: Regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs er Normale
+### But de la section: Regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs er Normaux
 
 ***
 ```
@@ -27,7 +38,7 @@ library(tidyverse)  #purrr, reader, tibble, ...
 ```
 
 ```r
-set.seed(1234) # Important pour tjrs avoir les memes resultats
+set.seed(1234) # Important pour toujours avoir les memes resultats
 ```
 
 #### Ouverture du ficher "Sample Sheet" qui contient les métas données des fichiers télécharges:
@@ -36,7 +47,7 @@ set.seed(1234) # Important pour tjrs avoir les memes resultats
 TCGA_SampleDict <- read.table("gdc_sample_sheet.2021-04-26.tsv", sep ="\t", header=TRUE, stringsAsFactors = FALSE )
 ```
 
-#### Nous pouvons voir les compte des échantillions par type:
+#### Nous pouvons voir les comptes des échantillions par type:
 
 ```r
 table(TCGA_SampleDict$Sample.Type)
@@ -51,7 +62,7 @@ TCGA_SampleDict$BarCode <- str_replace(TCGA_SampleDict$Sample.ID,"TCGA",str_sub(
 TCGA_SampleDict$BarCode <- str_replace_all(TCGA_SampleDict$BarCode,"-",".")
 ```
 
-#### Filtrer les fichier par type d’échantillon:
+#### Filtrer les fichiers par type d’échantillon:
 
 ```r
 # Extract the data subsets by type.
@@ -129,7 +140,7 @@ head(f_files)
 [6] "./UnzippedFiles/00f32c8e-2a91-485b-99c9-6e2e22addec1.htseq.counts.tsv"
 ```
 
-#### Les fichier de comptes génétique sont en format .tsv et le nom du fichier dans le « Sample Sheet » est en format .gz donc pour pouvoir retrouver le ficher dans le dictionnaire de référence « File.Name et BarCode » dois créer une référence des fichiers lu sur le disque et avoir la même référence .tsv - .gz
+#### Les fichiers de comptes génétique sont en format .tsv et le nom du fichier dans le « Sample Sheet » est en format .gz donc pour pouvoir retrouver le ficher dans le dictionnaire de référence « File.Name et BarCode » doit créer une référence des fichiers lus sur le disque et avoir la même référence .tsv - .gz
 
 ```r
 originalFilename <- data.frame(FilenameOnDisk=f_files,FileName=str_replace(str_replace(f_files,paste(locationOfFiles,"/",sep=""),""),".tsv",".gz"))
@@ -173,7 +184,7 @@ str(fileList)
  $ FileName      : Factor w/ 1002 levels "00068002-f4f0-4610-bfe6-67169c760d21.htseq.counts.gz",..: 1 2 3 4 5 6 7 8 9 10 ...
 ```
 
-#### Cette fonction fait la magie d’extraire le « BarCode » qui sera le nom de la colonne pour identifier l’échantillon, lire les fichiers .tsv de comptes de gènes et enlever les lignes non utilisées. Cette fonction retourne un data.frame avec 2 colonnes : Les noms des Genès dans un colonne et BarCode dans l’autre qui contient le compte (nombre) de gènes. 
+#### Cette fonction fait la magie d’extraire le « BarCode » qui sera le nom de la colonne pour identifier l’échantillon, lire les fichiers .tsv de comptes de gènes et enlever les lignes non utilisées. Cette fonction retourne un data.frame avec 2 colonnes : Les noms des Genès dans une colonne et BarCode dans l’autre qui contient le compte (nombre) de gènes. 
 
 
 ```r
@@ -217,7 +228,7 @@ List of 1002
   .. .. )
   ```
 
-#### Ici nous pouvons voir que le tibble (data.fram/matrice) de Gene et tous les comptes, par échantillon est créée. La dimension du tibble est de 60483 lignes (Genes) par 1003 colonnes (Mais 1002 Échantillions):
+#### Ici nous pouvons voir que le tibble (data.fram/matrice) de Genes et tous les comptes, par échantillon est créé. La dimension du tibble est de 60483 lignes (Genes) par 1003 colonnes (Mais 1002 Échantillions):
 
 ```r
 head(rawCounts.df)
@@ -249,7 +260,7 @@ head(rawCounts.df)
 write.table(as.data.frame(rawCounts.df),sep="\t","Tumor_Merged_2Lung_Counts.tsv", row.names = FALSE, quote = FALSE)
 ```
 
-#### Les mêmes étapes ont été faites pour les fichiers de comptes Normale (total de 93 échantillions) . Voici le code "directe" sans sorties ou explications.
+#### Les mêmes étapes ont été faites pour les fichiers de comptes Normaux (total de 93 échantillions) . Voici le code "directe" sans sortie ni explication.
 
 ```r
 TCGA_Barcodes <- read_csv("TCGA_Barcode_Dict_Normal.tsv",col_names = c("Filename","BarCode"),skip =1 )

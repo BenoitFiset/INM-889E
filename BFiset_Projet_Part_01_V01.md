@@ -54,13 +54,13 @@ files.access in ["open"] and files.analysis.workflow_type in ["HTSeq - Counts"] 
 
 ![](figures/NIH_Repo_ASearch_03.png)
 
-Cela permet de faire un choix des fichier d’accès de type “open” (publique) de “workflow”  HTSeq-Counts des projets de TCGA-HNSC (Head and Neck squamous cell carcinoma ) TCGA-LUSC (Lung squamous cell carcinoma)
+Cela permet de faire un choix des fichiers d’accès de type “open” (publique) de “workflow”  HTSeq-Counts des projets de TCGA-HNSC (Head and Neck squamous cell carcinoma ) TCGA-LUSC (Lung squamous cell carcinoma)
 
 Ce qui reste à faire est de mettre les fichiers dans le panier.
 
 ![](figures/NIH_Repo_ASearch_04.png)
 
-Et télécharger les fichier de “Manifest” et de “Sample Sheet” (detail des fichiers)
+Et télécharger les fichiers de “Manifest” et de “Sample Sheet” (detail des fichiers)
 
 ![](figures/NIH_Repo_Manifest_01.png)
 
@@ -88,7 +88,7 @@ La ligne de command utilisée pour le téléchargement des fichiers est la suiva
 ./gdc-client download -m  gdc_manifest_20210427_033048.txt -d TCGA_Data/ -n 4
 ```
 
-Il est important de savoir que le client gdc télécharge les fichier dans le répertoire passé en ligne de command et que chaque fichier  compressé en .gz est dans son propre sous-répertoire.
+Il est important de savoir que le client gdc télécharge les fichiers dans le répertoire passé en ligne de command et que chaque fichier compressé en .gz est dans son propre sous-répertoire.
 
 ``` 
 > tree TCGA_Data/
@@ -107,7 +107,7 @@ TCGA_Data/
 │   └── 0c8fee2b-71b6-4eb8-b983-8b75521c2a37.htseq.counts.gz
 ```
 
-Un mini script bash permet facilement de tout mettre les fichiers .gz dans un même repertoire au même niveau qui facilitera les traitement de ces fichier.
+Un mini script bash permet facilement de tout mettre les fichiers .gz dans un même repertoire au même niveau qui facilitera les traitements de ces fichiers.
 
 ```
 find ./TCGA_Data/ -type f \( -name "*.gz" \)|while read fname; do cp -v ${fname} ZippedFiles/. ; done
