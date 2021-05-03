@@ -106,7 +106,7 @@ HNSC.CN.5360.01A.01R.1436.07            10.13117            9.655543            
 
 ***
 
-#### Maintenant faisons les prédictions tant attendues du modèle fitsvmLinear_VST et le jeu de Tests
+## Maintenant faisons les prédictions tant attendues du modèle fitsvmLinear_VST et le jeu de Tests
 
 
 ```r
@@ -170,8 +170,7 @@ Les calculs que font la fonction confusionMatrix() sont le suivants:
 
 ***
 
-
-#### Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu de Tests
+## Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu de Tests
 
 
 ```r
@@ -225,34 +224,100 @@ Ce qui dit la matrice de confusion :
 
 Donc en d’autres termes il y a eu 17 échantillons LUSC identifiés faussement comme HNSC (« Sensitivity » = (True positive rate) = 84.68% ) et qu’il y a eu 3 échantillon HNSC identifié comme LUSC (« Specificity » = (True negative rate) = 96.67%).
 
-Nous pouvons voir clairement que le model SVM fitsvmLinear_VST est plus précis avec sa classification que Random Forest fitrf_VST.
+### Nous pouvons voir clairement que le model SVM fitsvmLinear_VST est plus précis avec sa classification que Random Forest fitrf_VST.
+
+***
+
+## Maintenant faisons les prédictions des modèles fitsvmLinear_VST et fitrf_VST (Random Forest) et le jeu Normale
+
+Il y aura un mimimum de sorties... allons se concentre sur les résultats
 
 
 ```r
-#Prediect with Normal
+# normalDataset.df_VST  <- readRDS("NormalDataset_df_VST_Normal.rds")
 
-fitsvmLinear <- readRDS("fitsvmLinear.rds")
-normalDataset.df_VST  <- readRDS("NormalDataset_df_VST_Normal.rds")
+dim(normalDataset.df_VST )
+kable(normalDataset.df_VST  [43:53,1:6],"rst")
+```
+```
+ dim(normalDataset.df_VST )
+[1]    93 17427
 
-dim(normalDataset.df )
-kable(normalDataset.df  [43:53,1:6],"rst")
-normalDataset.df  <- normalDataset.df [,-1] # Remove the Type colunm from TestDataset
-dim(normalDataset.df )
-kable(normalDataset.df  [43:53,1:6],"rst")
+kable(normalDataset.df_VST  [43:53,1:6],"rst")
 
+============================  ====  ==================  ==================  ==================  ==================  ==================
+\                             Type  ENSG00000000003.13  ENSG00000000419.11  ENSG00000000457.12  ENSG00000000460.15  ENSG00000000938.11
+============================  ====  ==================  ==================  ==================  ==================  ==================
+HNSC.CV.7423.11A.01R.2081.07  HNSC           10.363988           10.254031            7.277398            6.154062            6.730621
+HNSC.CV.7416.11A.01R.2081.07  HNSC           10.074296           10.618110            6.754814            6.101676            6.063347
+LUSC.51.4079.11A.01R.1758.07  LUSC            8.603351            8.154606            7.070855            4.398018           10.302034
+LUSC.56.7582.11A.01R.2045.07  LUSC            9.170808            8.478738            7.512434            5.312511           10.315651
+LUSC.85.7710.11A.01R.2125.07  LUSC            8.108887            8.971991            8.025179            5.596142           11.611160
+LUSC.56.8083.11A.01R.2247.07  LUSC            8.392597            8.378330            7.883732            4.595641           11.461918
+LUSC.43.6647.11A.01R.1820.07  LUSC            8.059541            8.271135            7.189719            4.535879           12.269652
+LUSC.56.7579.11A.01R.2045.07  LUSC            9.507510            9.134634            7.860343            4.894959           11.730293
+LUSC.43.7658.11A.01R.2125.07  LUSC            9.835925            8.850212            8.112907            4.789651           11.254981
+LUSC.77.7138.11A.01R.2045.07  LUSC            8.318903            8.777017            7.797314            4.556016           11.362884
+LUSC.56.8309.11A.01R.2296.07  LUSC           10.813934            8.682587            7.417639            4.962103           12.689825
+============================  ====  ==================  ==================  ==================  ==================  ==================
+```
+
+Il y a une différence du nombre de gènes post filtrages pour le jeu de données Normale. Il y a au finale 17427 gènes restant vs 11062 pour les jeux « Training » et « Test ». 
+
+Les gènes qui sont inclus dans les modèles entrainés fitsvmLinear_VST et fitrf_VST **DOIVENT** se retrouver dans le jeu de données Normale sinon il y aura erreur de la fonction predict() qui dira pas possible de prédire car il manque tel ou tel gène….
+
+Cela dit, il faut un étape de validation que tous les gènes des modèles entrainés fitsvmLinear_VST et fitrf_VST se retrouvent dans les jeu de données Normale. 
+
+
+```r
 TrainCols <- colnames(fitsvmLinear_VST$trainingData)[-1] # Colnames of model and remove first value "Outcome"
-NormalCols <- colnames(normalDataset.df) # Colnames of dataset
+NormalCols <- colnames(normalDataset.df_VST) # Colnames of dataset
+```
 
-NormalNotInTrain <- subset(TrainCols, !(TrainCols %in% NormalCols))  
-#TrainNotInCols2Normal <- subset(NormalCols, !(NormalCols %in% TrainCols))
+Pouvons voir la taille différente des jeux de données .
+```
+print(length(TrainCols))
+[1] 11057
 
-normalDataset.df[NormalNotInTrain] <- 0 # Create Missing Columns and put value to 0
+print(length(NormalCols))
+[1] 17427
+```
 
-predictions <- predict(fitsvmLinear_VST, newdata=normalDataset.df)
-normalDataset.df <-readRDS("NormalDataset_df_VST_Normal.rds") # reload to get Type Colunm back
-confusionMatrix(predictions, normalDataset.df$Type)
+C’est ici que nous validons la concordance des gènes entre le modèle et le jeu de données Normale. S’il y en a une, ajout de colonne du/des gènes manquants en mettant un compte de 0 pour ce/ces gènes. 
 
-predictions <- predict(fitrf_VST, newdata=normalDataset.df)
-normalDataset.df <-readRDS("NormalDataset_df_VST_Normal.rds") # reload to get Type Colunm back
-confusionMatrix(predictions, normalDataset.df$Type)
+```r
+NormalNotInTrain <- subset(TrainCols, !(TrainCols %in% NormalCols))  # Check missing Genes between Train and Normal
+normalDataset.df_VST[NormalNotInTrain] <- 0 # Create Missing Columns and put value to 0
+
+print(NormalNotInTrain) # See what is missing...
+```
+Sommes chanceux, il ne manquait qu'un gène
+```
+[1] "ENSG00000135094.9"
+```
+
+```r
+print(normalDataset.df_VST[,"ENSG00000135094.9"])
+```
+La colonne est bien ajoutée avec des valeurs de 0
+```
+ [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+[77] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+```
+
+## Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu Normale
+
+```r
+predictions <- predict(fitsvmLinear_VST, newdata=normalDataset.df_VST[,-1]) # Remove the Type colunm from normalDataset
+confusionMatrix(predictions, normalDataset.df_VST$Type)
+```
+
+
+
+
+## Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu Normale
+
+```r
+predictions <- predict(fitrf_VST, newdata=normalDataset.df_VST[,-1]) # Remove the Type colunm from normalDataset
+confusionMatrix(predictions, normalDataset.df_VST$Type)
 ```
