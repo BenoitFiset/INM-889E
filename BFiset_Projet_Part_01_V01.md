@@ -6,19 +6,6 @@ output:
   html_document: 
     keep_md: yes
 ---
-<style type="text/css">
-/*https://stackoverflow.com/questions/38367392/override-rmarkdown-theme-in-order-to-change-html-page-width/38373846*/
-body .main-container {
-  max-width: 1100px !important;
-  width: 1100px !important;
-}
-body {
-  margin: auto;
-  max-width: 1100px !important;
-}
-</style>
-
-
 
 # Sélection et Téléchargement des fichiers TCGA 
 
