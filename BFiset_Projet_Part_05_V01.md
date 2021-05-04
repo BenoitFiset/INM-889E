@@ -223,7 +223,7 @@ Donc en d’autres termes il y a eu 17 échantillons LUSC identifiés faussement
 
 ***
 
-## Maintenant faisons les prédictions des modèles SVM fitsvmLinear_VST et fitrf_VST (Random Forest) et le jeu de test Normal
+## Maintenant faisons les prédictions des modèles SVM fitsvmLinear_VST et fitrf_VST (Random Forest) et le jeu de données Normal
 
 Il y aura un mimimum de sorties... allons se concentre sur les résultats
 
@@ -342,7 +342,7 @@ Ce que dit la matrice de confusion : pas grand-chose sauf que le modèle a préd
 
 ***
 
-## Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu de test Normal
+## Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu de données Normal
 
 ```r
 predictions <- predict(fitrf_VST, newdata=normalDataset.df_VST[,-1]) # Remove the Type colunm from normalDataset
