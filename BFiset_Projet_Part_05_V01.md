@@ -24,11 +24,11 @@ body {
 
 ## Sur l'ordinateur personnel:
 
-### But de la section: Prédictions et résultats avec les modèles entrainé fitsvmLinear_VST et fitrf_VST avec les jeux de donnés Test et Normal.
+### But de la section: Prédictions et résultats avec les modèles entrainé fitsvmLinear_VST et fitrf_VST avec les jeux de données Test et Normal.
 
 ***
 
-#### Bref retour sur le nombre d’échantillons dans chaque jeu de donnés
+#### Bref retour sur le nombre d’échantillons dans chaque jeu de données
 
 ![](figures/Final_Count_DataSets_01.png){width=70%}
 ![](figures/Final_Count_DataSets_Normal_01.png){width=70%}
@@ -142,22 +142,22 @@ Prediction HNSC LUSC
                                          
        'Positive' Class : HNSC
 ```
-Nous pouvons voir de ces résultats que le modèle à un très haut taux de précision «Accuracy» =  98.51%. Il est aussi important de regarder les valeurs de « Sensitivity » = (True positive rate) = 97.30% et « Specificity » = (True negative rate) = 100% et la valeur de Kappa = 96.99%
+Nous pouvons voir de ces résultats que le modèle a un très haut taux de précision «Accuracy» =  98.51%. Il est aussi important de regarder les valeurs de « Sensitivity » = (True positive rate) = 97.30% et « Specificity » = (True negative rate) = 100% et la valeur de Kappa = 96.99%
 
-La valeur de précision «Accuracy »  est le pourcentage que le modèle classifie correctement une valeur de tous les valeurs.
+La valeur de précision «Accuracy » est le pourcentage que le modèle classifie correctement une valeur de tous les valeurs.
 
 La valeur de Kappa (Cohen’s Kappa) est comme la précision mais ajoute un élément de correction de probabilité de classification dû  « au hasard » par le modèle.  Plus le Kappa est haut plus que la classification est parfaite. 
 
-Ici le Kappa à 96.99% est tres haut... pouvons dire que pas de classifications dû au hasard ici.
+Ici le Kappa a 96.99% est tres haut... pouvons dire que pas de classification due au hasard ici.
 
-Ce qui dit la matrice de confusion :
+Ce que dit la matrice de confusion :
 
 * 108 « True Positive - TP »  -  0  « False Positive - FP»
 * 3   « False Negative - FN » -  90 « True Negative - TN »
 
 Donc en d’autres termes il y a eu 3 échantillons LUSC identifiés faussement comme HNSC (« Sensitivity » = (True positive rate) = 97.30% ) et qu’il y a eu aucun échantillon HNSC identifié comme LUSC (« Specificity » = (True negative rate) = 100%).
 
-Les calculs que font la fonction confusionMatrix() sont le suivants:
+Les calculs que font la fonction confusionMatrix() sont les suivants:
 
 * « Accuracy »    = (TP + TN) / (TP + FP + FN + TN) 
 * « Sensitivity » = (True positive rate - TPR ): TPR = TP / P = TP / (TP+FN)
@@ -208,16 +208,16 @@ Prediction HNSC LUSC
 
 ```
 
-Nous pouvons voir de ces résultats que le modèle à une précision «Accuracy» = 90.05%. Il est aussi important de regarder les valeurs de « Sensitivity » = (True positive rate) = 84.68% et « Specificity » = (True negative rate) = 96.67% et la valeur de Kappa = 80.17%
+Nous pouvons voir de ces résultats que le modèle a une précision «Accuracy» = 90.05%. Il est aussi important de regarder les valeurs de « Sensitivity » = (True positive rate) = 84.68% et « Specificity » = (True negative rate) = 96.67% et la valeur de Kappa = 80.17%
 
-Ici le Kappa à 80.17% est assez haut... pas beaucoup de classification dû au hasard.
+Ici le Kappa a 80.17% est assez haut... pas beaucoup de classification due au hasard.
 
-Ce qui dit la matrice de confusion :
+Ce que dit la matrice de confusion :
 
 * 94 « True Positive - TP »    -  3  « False Positive - FP»
 * 17   « False Negative - FN » -  87 « True Negative - TN »
 
-Donc en d’autres termes il y a eu 17 échantillons LUSC identifiés faussement comme HNSC (« Sensitivity » = (True positive rate) = 84.68% ) et qu’il y a eu 3 échantillon HNSC identifié comme LUSC (« Specificity » = (True negative rate) = 96.67%).
+Donc en d’autres termes il y a eu 17 échantillons LUSC identifiés faussement comme HNSC (« Sensitivity » = (True positive rate) = 84.68% ) et qu’il y a eu 3 échantillons HNSC identifié comme LUSC (« Specificity » = (True negative rate) = 96.67%).
 
 ### Nous pouvons voir clairement que le model SVM fitsvmLinear_VST est plus précis avec sa classification que Random Forest fitrf_VST.
 
@@ -257,7 +257,7 @@ LUSC.56.8309.11A.01R.2296.07  LUSC           10.813934            8.682587      
 ============================  ====  ==================  ==================  ==================  ==================  ==================
 ```
 
-Il y a une différence du nombre de gènes post filtrages pour le jeu de données Normal. Il y a au finale 17427 gènes restant vs 11062 pour les jeux « Training » et « Test ». 
+Il y a une différence du nombre de gènes post filtrages pour le jeu de données Normal. Il y a au final 17427 gènes restants vs 11062 pour les jeux « Training » et « Test ». 
 
 Les gènes qui sont inclus dans les modèles entrainés fitsvmLinear_VST et fitrf_VST **DOIVENT** se retrouver dans le jeu de données Normal sinon il y aura erreur de la fonction predict() qui dira pas possible de prédire car il manque tel ou tel gène….
 
@@ -300,7 +300,7 @@ La colonne est bien ajoutée avec des valeurs de 0
 [77] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ```
 
-## Maintenant faisons les prédictions du modèle SVM fitsvmLinear_VST et le jeu de donnés Normal
+## Maintenant faisons les prédictions du modèle SVM fitsvmLinear_VST et le jeu de données Normal
 
 
 ```r
@@ -336,9 +336,9 @@ Prediction HNSC LUSC
        'Positive' Class : HNSC  
 ```
 
-Nous pouvons voir de ces résultats que le modèle à une précision «Accuracy» = 100%. Le reste des valeurs «Sensitivity», «Specificity» et Kappa sont aussi 100%
+Nous pouvons voir de ces résultats que le modèle a une précision «Accuracy» = 100%. Le reste des valeurs «Sensitivity», «Specificity» et Kappa sont aussi 100%
 
-Ce qui dit la matrice de confusion : pas grand-chose sauf que le modèle a prédit tous les échantillons correctement.
+Ce que dit la matrice de confusion : pas grand-chose sauf que le modèle a prédit tous les échantillons correctement.
 
 ***
 
@@ -377,22 +377,22 @@ Prediction HNSC LUSC
        'Positive' Class : HNSC    
 ```
 
-Nous pouvons voir de ces résultats, avec un précision «Accuracy» = 51.61%,  que le modèle à de la difficulté à prédire avec ce jeu de données surtout la classe LUSC. 
+Nous pouvons voir de ces résultats, avec une précision «Accuracy» = 51.61%,  que le modèle a de la difficulté à prédire avec ce jeu de données surtout la classe LUSC. 
 
 Ceci se reflète avec la valeur de « Sensitivity » = (True positive rate) = 95.45 % et « Specificity » = (True negative rate) = 12.24%. La valeur de Kappa = 7.35%
 
 Ici le Kappa à 7.35% est très très bas... nous serions mieux de faire des prédictions à la main au hasard !!!
 
-Ce qui dit la matrice de confusion :
+Ce que dit la matrice de confusion :
 
 * 42 « True Positive   - TP » -  43 « False Positive - FP»
 * 2  « False Negative  - FN » -  6  « True Negative - TN »
 
 Donc en d’autres termes il y a eu:
 
-* 42 échantillons HNSC bien identifié comme HNSC
+* 42 échantillons HNSC bien identifiés comme HNSC
 * 2  échantillons HNSC identifiés faussement comme LUSC (« Sensitivity » = (True positive rate) = 95.45%
 * 43 échantillons LUSC identifiés faussement comme HNSC (« Specificity » = (True negative rate) = 12.24%)
-* 6  échantillons LUSC bien identifié comme LUSC
+* 6  échantillons LUSC bien identifiés comme LUSC
 
 
