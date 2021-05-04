@@ -1,5 +1,5 @@
-# INM-889E
-Repo pour le cours INM 889E - Projet de ML
+# INF-889E
+Repo pour le cours INF 889E - Projet de ML
 
 ***
 
