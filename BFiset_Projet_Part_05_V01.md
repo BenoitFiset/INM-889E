@@ -17,7 +17,11 @@ date: "30/04/2021"
 #### Bref retour sur le nombre d’échantillons dans chaque jeu de données
 
 ![](figures/Final_Count_DataSets_01.png | width=70)
+
+<img src="figures/Final_Count_DataSets_01.png" width="70%">
+
 ![](figures/Final_Count_DataSets_Normal_01.png | width=70)
+<img src="figures/Final_Count_DataSets_Normal_01.png" width="70%">
 
 #### Spécifiquement sur le jeu de Tests
 
