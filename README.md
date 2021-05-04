@@ -40,7 +40,7 @@ Le projet à été fait en R avec les libraires suivantes:
 ```
 ***
 
-# 6 Sections pour ce projet
+# 5 Sections pour ce projet
   + Section 1 - [Sélection et Téléchargement des fichiers TCGA](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_01_V01.md)
   + Section 2 - [Pré-Traitement des fichiers (Regroupement des fichiers comptes)](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_02_V01.md)
   + Section 3 - [Pré-Traitement des fichiers (Filtrage, Découpe, Normalisation, Corrélation) ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md)
