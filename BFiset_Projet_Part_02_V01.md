@@ -2,25 +2,7 @@
 title: 'Projet: TCGA HNSC LUSC ML - Partie #2'
 author: "Benoit Fiset"
 date: "27/04/2021"
-output:
-  html_document: 
-    keep_md: yes
 ---
-
-<style type="text/css">
-/*https://stackoverflow.com/questions/38367392/override-rmarkdown-theme-in-order-to-change-html-page-width/38373846*/
-body .main-container {
-  max-width: 1100px !important;
-  width: 1100px !important;
-}
-body {
-  margin: auto;
-  max-width: 1100px !important;
-}
-</style>
-
-
-
 
 # Classification par apprentissage automatique du type de cancer à partir de données d'expression génétique de séquençage RNA-Seq
 
