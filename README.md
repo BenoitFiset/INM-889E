@@ -59,8 +59,8 @@ Le projet à été fait en R avec les libraires suivantes:
   + Section 5 - [Prédictions et Résultats](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_05_V01.md)
     + Lien Rapide: [Prédictions avec le modèle SVM fitsvmLinear_VST et le jeu de Tests](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_05_V01.md#maintenant-faisons-les-pr%C3%A9dictions-tant-attendues-du-mod%C3%A8le-fitsvmlinear_vst-et-le-jeu-de-tests)
     + Lien Rapide: [Prédictions du modèle fitrf_VST (Random Forest) et le jeu de Tests](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_05_V01.md#maintenant-faisons-les-pr%C3%A9dictions-du-mod%C3%A8le-fitrf_vst-random-forest-et-le-jeu-de-tests)
-    + Lien Rapide: [Prédictions avec le modèle SVM fitsvmLinear_VST et le jeu de donnés Normale](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_05_V01.md#maintenant-faisons-les-pr%C3%A9dictions-du-mod%C3%A8le-svm-fitsvmlinear_vst-et-le-jeu-normale)
-    + Lien Rapide: [Prédictions du modèle fitrf_VST (Random Forest) et le jeu de donnés Normale](
-https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_05_V01.md#maintenant-faisons-les-pr%C3%A9dictions-du-mod%C3%A8le-fitrf_vst-random-forest-et-le-jeu-normale)
+    + Lien Rapide: [Prédictions avec le modèle SVM fitsvmLinear_VST et le jeu de donnés Normal](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_05_V01.md#maintenant-faisons-les-pr%C3%A9dictions-du-mod%C3%A8le-svm-fitsvmlinear_vst-et-le-jeu-normal)
+    + Lien Rapide: [Prédictions du modèle fitrf_VST (Random Forest) et le jeu de donnés Normal](
+https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_05_V01.md#maintenant-faisons-les-pr%C3%A9dictions-du-mod%C3%A8le-fitrf_vst-random-forest-et-le-jeu-normal)
 
 ### Note:  Le jeu de données d’échantillons Normaux sera utilisé pour tester les prédictions des modèles. Ici le modèle fera des prédictions sur le type de cancer HNSC vs LUSC et non “Tumeur” vs “Normale”. Le jeu de données Normales comporte le type de cancer HNSC et LUSC dans son metadata.**
