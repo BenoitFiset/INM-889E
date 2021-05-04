@@ -106,7 +106,7 @@ HNSC.CN.5360.01A.01R.1436.07            10.13117            9.655543            
 
 ***
 
-## Maintenant faisons les prédictions tant attendues du modèle fitsvmLinear_VST et le jeu de Tests
+## Maintenant faisons les prédictions tant attendues du modèle SVM fitsvmLinear_VST et le jeu de Tests
 
 
 ```r
@@ -228,7 +228,7 @@ Donc en d’autres termes il y a eu 17 échantillons LUSC identifiés faussement
 
 ***
 
-## Maintenant faisons les prédictions des modèles fitsvmLinear_VST et fitrf_VST (Random Forest) et le jeu Normale
+## Maintenant faisons les prédictions des modèles SVM fitsvmLinear_VST et fitrf_VST (Random Forest) et le jeu Normale
 
 Il y aura un mimimum de sorties... allons se concentre sur les résultats
 
@@ -305,7 +305,7 @@ La colonne est bien ajoutée avec des valeurs de 0
 [77] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ```
 
-## Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu Normale
+## Maintenant faisons les prédictions du modèle SVM fitsvmLinear_VST et le jeu Normale
 
 
 ```r
