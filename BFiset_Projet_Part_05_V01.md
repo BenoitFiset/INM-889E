@@ -26,12 +26,7 @@ body {
 
 ### But de la section: Prédictions et résultats avec les modèles entrainé fitsvmLinear_VST et fitrf_VST avec les jeux de donnés Test et Normal.
 
-
-```
-testDataset.df_VST <-readRDS("testDataset_df_VST_Normal.rds")
-fitsvmLinear_VST <- readRDS("fitsvmLinear.rds")
-fitrf_VST  <- readRDS("fitrf.rds")
-```
+***
 
 #### Bref retour sur le nombre d’échantillons dans chaque jeu de donnés
 
