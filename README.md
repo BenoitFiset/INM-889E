@@ -7,16 +7,16 @@ Repo pour le cours INM 889E - Projet de ML
 
 * Vu la taille des fichiers et le temps de calcul nécessaire une partie du traitement des fichiers ont été effectués sur des serveurs HPC de Calcul Québec (Béluga et Graham):
   + Le téléchargement des fichiers incluant le regroupement et décompression
-  + Le regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs
-  + Le regroupement des fichiers individuels en une matrice unifié de comptes - Normale
+  + Le regroupement des fichiers individuels en une matrice unifiée de comptes - Tumeurs
+  + Le regroupement des fichiers individuels en une matrice unifiée de comptes - Normale
   + Entrainement des modèles (Algo. SVM et Random Forest)
   + “Tuning" des modèles
   + Prediction des modèles 
 
-* Sur le l’ordinateur local:
-  + Le filtrage des genes qui ont comportent plus de 95% de comptes de valeur 0
-  + Le filtrage des genes qui ont moins de 1% de comptes
-  + La creation de le colonne qui sera la “Classe” du projet. Se nomme “Type”
+* Sur l’ordinateur local:
+  + Le filtrage des gènes qui ont comportent plus de 95% de comptes de valeur 0
+  + Le filtrage des gènes qui ont moins de 1% de comptes
+  + La création de le colonne qui sera la “Classe” du projet. Se nomme “Type”
   + Le découpage du jeu de données “Training”  80% et “Test” 20%. 
   + Normalisation des données “Training” avec VST de DESeq2
   + Normalisation des données “Test” avec VST de DESeq2
@@ -45,7 +45,7 @@ Le projet à été fait en R avec les libraires suivantes:
   + Section 2 - [Pré-Traitement des fichiers (Regroupement des fichiers comptes)](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_02_V01.md)
   + Section 3 - [Pré-Traitement des fichiers (Filtrage, Découpe, Normalisation, Corrélation) ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md)
     + Lien Rapide: [Filtrage des données](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-g%C3%A8nes-qui-ont-plus-de-95-de-0-comme-compte)
-    + Lien Rapide: [Colonne d'idenfication du Type de l’échantillon](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#ajouter-une-colonne-pour-identifier-le-type-de-l%C3%A9chantillon)
+    + Lien Rapide: [Colonne d'identification du Type de l’échantillon](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#ajouter-une-colonne-pour-identifier-le-type-de-l%C3%A9chantillon)
     + Lien Rapide: [Découpage Training / Test](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#d%C3%A9coupage-des-donn%C3%A9es-en-80-training-et-20-test)
     + Lien Rapide: [Normalisation VST](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#normalisation-avec-vst-de-deseq2)
     + Lien Rapide: [Filtrage avec indices corrélation](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-%C3%A9chantillons-qui-ont-un-coefficient-de-corr%C3%A9lation-de-plus-de-98-du-jeu-training)
