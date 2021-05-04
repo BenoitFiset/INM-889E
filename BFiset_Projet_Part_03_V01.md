@@ -93,7 +93,7 @@ kable(percentZeros.df[order(-percentZeros.df$PercentZero)[2200:2210],],format = 
 ```
 
 
-#### Un exemple de genes qui sont tous a 0. Il y à 1002 echantilions et la colonne "TotalZero" qui a une valeur de 1002 montre que tous les èchantillions de ce gène sont à 0.
+#### Un exemple de genes qui sont tous a 0. Il y a 1002 echantilions et la colonne "TotalZero" qui a une valeur de 1002 montre que tous les échantillions de ce gène sont à 0.
 ```
 =================  ===========  =========
 \                  PercentZero  TotalZero
@@ -136,14 +136,14 @@ geneMinCount = round((0.01 * ncol(rawCountData)))
 minGeneCount <- apply(rawCountData, 1, min) 
 ```
 
-#### Selection des gènes qui rencontrent les critères de filtrage du +95% et -1% de comptes
+#### Selection des gènes qui rencontrent les critères de filtrage du +95% et/ou du -1% de comptes
 
 ```r
 # Create a TRUE / FALSE where TRUE is to remove that Gene
 toFilterGenes <- (percentZerosCount > percentFilterZero) | (minGeneCount < geneMinCount)
 ```
 
-#### La table des resultats des filtres. La colonne TRUE (ne rencontre pas les Critères de filtrage) est le nombre de gènes à enlever. La colonne FALSE (ne rencontre pas les Critèresde filtrage) est le nombre de gènes à garder
+#### La table des resultats des filtres. La colonne TRUE (ne rencontre pas les Critères de filtrage) est le nombre de gènes à enlever. La colonne FALSE (ne rencontre pas les Critères de filtrage) est le nombre de gènes à garder
 
 ```r
 table(toFilterGenes)
@@ -153,7 +153,6 @@ toFilterGenes
 FALSE  TRUE 
 11061 49422 
 ```
-
 
 #### Inversion pour que TRUE = Garder gènes et FALSE = Enlever gènes 
 
@@ -256,7 +255,7 @@ LUSC.66.2781.01A  LUSC                4255                5514                11
 
 ***
 
-## Découpage de des données en 80% Training et 20% Test
+## Découpage des données en 80% Training et 20% Test
 
 
 ```r
@@ -300,7 +299,7 @@ From: https://rdrr.io/bioc/DESeq2/man/varianceStabilizingTransformation.html
 
 
 ```r
-condition <- condition <- factor(trainingDataset.df$Type)
+condition <- factor(trainingDataset.df$Type)
 
 # Transpose and Convert Training Data Frame to Matrix without the Type column
 tempDDSdftoMat <- as.matrix(t(trainingDataset.df[,-1]))
@@ -342,7 +341,7 @@ legend("topleft",
 
 ```r
 #The variable that is used for the VST Condition is the Type column
-condition <- condition <- factor(testDataset.df$Type)
+condition <- factor(testDataset.df$Type)
 
 # Transpose and Convert Test Data Frame to Matrix without the Type column
 tempDDSdftoMat <- as.matrix(t(testDataset.df[,-1]))   
@@ -489,9 +488,9 @@ par(mfrow=c(1,1))
 ![](figures/Final_Count_DataSets_01.png){width=70%}
 
 ***
-# Filtrage et normalisation VST du jeu de test normale.
+# Filtrage et normalisation VST du jeu de test normal.
 
-#### Voici le code "directe" avec un minimums de sorties et explications.  
+#### Voici le code "direct" avec un minimum de sorties et explications.  
 
 
 ```r
@@ -572,7 +571,7 @@ vstData <- t(assay(data_VST))
 normalDataset.df <- data.frame(Type=apply(as.matrix(rownames(vstData)),1,substrColName),vstData) 
 ```
 
-#### Visualisation de la projection PCA des échantillions Normale
+#### Visualisation de la projection PCA des échantillions Normaux
 
 
 ```r
@@ -598,7 +597,7 @@ legend("topleft",
 
 ```r
 par(mfrow=c(2,1))
-my.barplot <- barplot(table(normalDataset.df[,"Type"]), main='Nombre d’échantillons pour "Normale"')
+my.barplot <- barplot(table(normalDataset.df[,"Type"]), main='Nombre d’échantillons pour "Normal"')
 text(my.barplot,(table(normalDataset.df$Type)/2), paste("n: ", table(normalDataset.df$Type), sep="") ,cex=1) 
 par(mfrow=c(1,1))
 }
