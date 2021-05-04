@@ -20,8 +20,8 @@ Repo pour le cours INM 889E - Projet de ML
   + Le découpage du jeu de données “Training”  80% et “Test” 20%. 
   + Normalisation des données “Training” avec VST de DESeq2
   + Normalisation des données “Test” avec VST de DESeq2
-  + Normalisation des données “Normale” avec VST de DESeq2
-  + Filtrer les genes qui ont un indice de correlation de plus de 98% (Tumeur et Normale)
+  + Normalisation des données “Normal” avec VST de DESeq2
+  + Filtrer les genes qui ont un indice de correlation de plus de 98% (Tumeur et Normal)
 
 ***
 
