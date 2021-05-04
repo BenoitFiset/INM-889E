@@ -24,7 +24,7 @@ body {
 
 ## Sur l'ordinateur personnel:
 
-### But de la section: Prédictions et résultats avec les modèles entrainé fitsvmLinear_VST et fitrf_VST avec les jeux de données Test et Normale.
+### But de la section: Prédictions et résultats avec les modèles entrainé fitsvmLinear_VST et fitrf_VST avec les jeux de donnés Test et Normal.
 
 
 ```
@@ -228,7 +228,7 @@ Donc en d’autres termes il y a eu 17 échantillons LUSC identifiés faussement
 
 ***
 
-## Maintenant faisons les prédictions des modèles SVM fitsvmLinear_VST et fitrf_VST (Random Forest) et le jeu Normale
+## Maintenant faisons les prédictions des modèles SVM fitsvmLinear_VST et fitrf_VST (Random Forest) et le jeu de test Normal
 
 Il y aura un mimimum de sorties... allons se concentre sur les résultats
 
@@ -262,11 +262,11 @@ LUSC.56.8309.11A.01R.2296.07  LUSC           10.813934            8.682587      
 ============================  ====  ==================  ==================  ==================  ==================  ==================
 ```
 
-Il y a une différence du nombre de gènes post filtrages pour le jeu de données Normale. Il y a au finale 17427 gènes restant vs 11062 pour les jeux « Training » et « Test ». 
+Il y a une différence du nombre de gènes post filtrages pour le jeu de données Normal. Il y a au finale 17427 gènes restant vs 11062 pour les jeux « Training » et « Test ». 
 
-Les gènes qui sont inclus dans les modèles entrainés fitsvmLinear_VST et fitrf_VST **DOIVENT** se retrouver dans le jeu de données Normale sinon il y aura erreur de la fonction predict() qui dira pas possible de prédire car il manque tel ou tel gène….
+Les gènes qui sont inclus dans les modèles entrainés fitsvmLinear_VST et fitrf_VST **DOIVENT** se retrouver dans le jeu de données Normal sinon il y aura erreur de la fonction predict() qui dira pas possible de prédire car il manque tel ou tel gène….
 
-Cela dit, il faut faire une étape de validation pour etre certain que tous les gènes des modèles entrainés fitsvmLinear_VST et fitrf_VST se retrouvent dans les jeu de données Normale. 
+Cela dit, il faut faire une étape de validation pour etre certain que tous les gènes des modèles entrainés fitsvmLinear_VST et fitrf_VST se retrouvent dans les jeu de données Normal. 
 
 
 ```r
@@ -283,7 +283,7 @@ print(length(NormalCols))
 [1] 17427
 ```
 
-C’est ici que nous validons la concordance des gènes entre le modèle et le jeu de données Normale. S’il y en a une, ajout de colonne du/des gènes manquants en mettant un compte de 0 pour ce/ces gènes. 
+C’est ici que nous validons la concordance des gènes entre le modèle et le jeu de données Normal. S’il y en a une, ajout de colonne du/des gènes manquants en mettant un compte de 0 pour ce/ces gènes. 
 
 ```r
 NormalNotInTrain <- subset(TrainCols, !(TrainCols %in% NormalCols))  # Check missing Genes between Train and Normal
@@ -305,7 +305,7 @@ La colonne est bien ajoutée avec des valeurs de 0
 [77] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ```
 
-## Maintenant faisons les prédictions du modèle SVM fitsvmLinear_VST et le jeu Normale
+## Maintenant faisons les prédictions du modèle SVM fitsvmLinear_VST et le jeu de donnés Normal
 
 
 ```r
@@ -347,7 +347,7 @@ Ce qui dit la matrice de confusion : pas grand-chose sauf que le modèle a préd
 
 ***
 
-## Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu Normale
+## Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu de test Normal
 
 ```r
 predictions <- predict(fitrf_VST, newdata=normalDataset.df_VST[,-1]) # Remove the Type colunm from normalDataset
