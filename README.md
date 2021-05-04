@@ -46,7 +46,7 @@ Le projet à été fait en R avec les libraires suivantes:
   + Section 3 - [Pré-Traitement des fichiers (Filtrage, Découpe, Normalisation, Corrélation) ](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md)
     + Lien Rapide: [Filtrage des données](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-g%C3%A8nes-qui-ont-plus-de-95-de-0-comme-compte)
     + Lien Rapide: [Colonne d'idenfication du Type de l’échantillon](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#ajouter-une-colonne-pour-identifier-le-type-de-l%C3%A9chantillon)
-    + Lien Rapide: [Découpage Training / Test](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#decoupage-de-des-donnees-en-80-training-et-20-test)
+    + Lien Rapide: [Découpage Training / Test](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#d%C3%A9coupage-des-donn%C3%A9es-en-80-training-et-20-test)
     + Lien Rapide: [Normalisation VST](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#normalisation-avec-vst-de-deseq2)
     + Lien Rapide: [Filtrage des ind. corrélation](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#filtrage-des-%C3%A9chantillons-qui-ont-un-coefficient-de-corr%C3%A9lation-de-plus-de-98)
     + Lien Rapide: [Compte final des jeux de donnés](https://github.com/BenoitFiset/INM-889E/blob/main/BFiset_Projet_Part_03_V01.md#compte-final)
