@@ -266,7 +266,7 @@ Il y a une différence du nombre de gènes post filtrages pour le jeu de donnée
 
 Les gènes qui sont inclus dans les modèles entrainés fitsvmLinear_VST et fitrf_VST **DOIVENT** se retrouver dans le jeu de données Normale sinon il y aura erreur de la fonction predict() qui dira pas possible de prédire car il manque tel ou tel gène….
 
-Cela dit, il faut un étape de validation que tous les gènes des modèles entrainés fitsvmLinear_VST et fitrf_VST se retrouvent dans les jeu de données Normale. 
+Cela dit, il faut faire une étape de validation pour etre certain que tous les gènes des modèles entrainés fitsvmLinear_VST et fitrf_VST se retrouvent dans les jeu de données Normale. 
 
 
 ```r
@@ -307,13 +307,45 @@ La colonne est bien ajoutée avec des valeurs de 0
 
 ## Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu Normale
 
+
 ```r
 predictions <- predict(fitsvmLinear_VST, newdata=normalDataset.df_VST[,-1]) # Remove the Type colunm from normalDataset
 confusionMatrix(predictions, normalDataset.df_VST$Type)
 ```
+```
+Confusion Matrix and Statistics
 
+          Reference
+Prediction HNSC LUSC
+      HNSC   44    0
+      LUSC    0   49
+                                     
+               Accuracy : 1          
+                 95% CI : (0.9611, 1)
+    No Information Rate : 0.5269     
+    P-Value [Acc > NIR] : < 2.2e-16  
+                                     
+                  Kappa : 1          
+                                     
+ Mcnemar's Test P-Value : NA         
+                                     
+            Sensitivity : 1.0000     
+            Specificity : 1.0000     
+         Pos Pred Value : 1.0000     
+         Neg Pred Value : 1.0000     
+             Prevalence : 0.4731     
+         Detection Rate : 0.4731     
+   Detection Prevalence : 0.4731     
+      Balanced Accuracy : 1.0000     
+                                     
+       'Positive' Class : HNSC  
+```
 
+Nous pouvons voir de ces résultats que le modèle à une précision «Accuracy» = 100%. Le reste des valeurs «Sensitivity», «Specificity» et Kappa sont aussi 100%
 
+Ce qui dit la matrice de confusion : pas grand-chose sauf que le modèle a prédit tous les échantillons correctement.
+
+***
 
 ## Maintenant faisons les prédictions du modèle fitrf_VST (Random Forest) et le jeu Normale
 
@@ -321,3 +353,51 @@ confusionMatrix(predictions, normalDataset.df_VST$Type)
 predictions <- predict(fitrf_VST, newdata=normalDataset.df_VST[,-1]) # Remove the Type colunm from normalDataset
 confusionMatrix(predictions, normalDataset.df_VST$Type)
 ```
+```
+Confusion Matrix and Statistics
+
+          Reference
+Prediction HNSC LUSC
+      HNSC   42   43
+      LUSC    2    6
+                                          
+               Accuracy : 0.5161          
+                 95% CI : (0.4101, 0.6211)
+    No Information Rate : 0.5269          
+    P-Value [Acc > NIR] : 0.6228          
+                                          
+                  Kappa : 0.0735          
+                                          
+ Mcnemar's Test P-Value : 2.479e-09       
+                                          
+            Sensitivity : 0.9545          
+            Specificity : 0.1224          
+         Pos Pred Value : 0.4941          
+         Neg Pred Value : 0.7500          
+             Prevalence : 0.4731          
+         Detection Rate : 0.4516          
+   Detection Prevalence : 0.9140          
+      Balanced Accuracy : 0.5385          
+                                          
+       'Positive' Class : HNSC    
+```
+
+Nous pouvons voir de ces résultats, avec un précision «Accuracy» = 51.61%,  que le modèle à de la difficulté à prédire avec ce jeu de données surtout la classe LUSC. 
+
+Ceci se reflète avec la valeur de « Sensitivity » = (True positive rate) = 95.45 % et « Specificity » = (True negative rate) = 12.24%. La valeur de Kappa = 7.35%
+
+Ici le Kappa à 7.35% est très très bas... nous serions mieux de faire des prédictions à la main au hasard !!!
+
+Ce qui dit la matrice de confusion :
+
+* 42 « True Positive   - TP » -  43 « False Positive - FP»
+* 2  « False Negative  - FN » -  6  « True Negative - TN »
+
+Donc en d’autres termes il y a eu:
+
+* 42 échantillons HNSC bien identifié comme HNSC
+* 2  échantillons HNSC identifiés faussement comme LUSC (« Sensitivity » = (True positive rate) = 95.45%
+* 43 échantillons LUSC identifiés faussement comme HNSC (« Specificity » = (True negative rate) = 12.24%)
+* 6  échantillons LUSC bien identifié comme LUSC
+
+
