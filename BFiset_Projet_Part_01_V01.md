@@ -2,9 +2,6 @@
 title: 'Projet: TCGA HNSC LUSC ML - Partie #1'
 author: "Benoit Fiset"
 date: "26/04/2021"
-output:
-  html_document: 
-    keep_md: yes
 ---
 
 # Sélection et Téléchargement des fichiers TCGA 
