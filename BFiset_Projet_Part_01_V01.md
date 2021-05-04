@@ -82,13 +82,13 @@ Le client gdc se trouve ici: https://gdc.cancer.gov/access-data/gdc-data-transfe
 
 ![](figures/NIH_GDC_Tool_01.png) 
 
-La ligne de command utilisée pour le téléchargement des fichiers est la suivante:
+La ligne de commande utilisée pour le téléchargement des fichiers est la suivante:
 
 ```
 ./gdc-client download -m  gdc_manifest_20210427_033048.txt -d TCGA_Data/ -n 4
 ```
 
-Il est important de savoir que le client gdc télécharge les fichiers dans le répertoire passé en ligne de command et que chaque fichier compressé en .gz est dans son propre sous-répertoire.
+Il est important de savoir que le client gdc télécharge les fichiers dans le répertoire passé en ligne de commande et que chaque fichier compressé en .gz est dans son propre sous-répertoire.
 
 ``` 
 > tree TCGA_Data/

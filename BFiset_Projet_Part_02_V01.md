@@ -28,7 +28,7 @@ body {
 
 ## Sur le serveur HPC:
 
-### But de la section: Regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs er Normaux
+### But de la section: Regroupement des fichiers individuels en une matrice unifié de comptes - Tumeurs et Normaux
 
 ***
 ```
@@ -192,7 +192,7 @@ str(fileListFiltered)
  $ FileName      : Factor w/ 1002 levels "00068002-f4f0-4610-bfe6-67169c760d21.htseq.counts.gz",..: 1 2 3 4 5 6 7 8 9 10 ...
 ```
 
-#### Cette fonction fait la magie d’extraire le « BarCode » qui sera le nom de la colonne pour identifier l’échantillon, lire les fichiers .tsv de comptes de gènes et enlever les lignes non utilisées. Cette fonction retourne un data.frame avec 2 colonnes : Les noms des Genès dans une colonne et BarCode dans l’autre qui contient le compte (nombre) de gènes. 
+#### Cette fonction fait la magie d’extraire le « BarCode » qui sera le nom de la colonne pour identifier l’échantillon, lire les fichiers .tsv de comptes de gènes et enlever les lignes non utilisées. Cette fonction retourne un data.frame avec 2 colonnes : Les noms des gènes dans une colonne et BarCode dans l’autre qui contient le compte (nombre) de gènes. 
 
 
 ```r
@@ -265,7 +265,7 @@ head(rawCounts.df)
 #   HNSC.CN.5366.01A <dbl>, LUSC.58.A46L.01A <dbl>, HNSC.IQ.A6SG.01A <dbl>,
 ```
 
-#### Il ne reste qu'à sauvegarder ce fichier regroupé des comptes de gènes. Il a une conversion du tibble en data.frame pour sauvgarder en format .tsv
+#### Il ne reste qu'à sauvegarder ce fichier des comptes de gènes regroupés. Il a une conversion du tibble en data.frame pour sauvgarder en format .tsv
 
 ```r
 write.table(as.data.frame(rawCounts.df),sep="\t","Tumor_Merged_2Lung_Counts.tsv", row.names = FALSE, quote = FALSE)

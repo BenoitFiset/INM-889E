@@ -68,12 +68,11 @@ cl <- makeCluster(32, type='PSOCK', outfile="OutCaret.txt")
 registerDoParallel(cl)
 ```
 
-Une des forces du package caret et de pouvoir directement influencer l’entrainement du modèle avec des paramètres d‘optimisation dès le début. Ceci veut dire que qu’au lieu de débuter avec les paramètres de base pour le premier entrainement et plus tard essayer d’optimiser les performances, nous pouvons déjà dès le début dire au model d’essayer de trouver le meilleur modèle de prédiction en utilisant des variances des métriques d’influences.
+Une des forces du package caret est de pouvoir directement influencer l’entrainement du modèle avec des paramètres d‘optimisation dès le début. Ceci veut dire que qu’au lieu de débuter avec les paramètres de base pour le premier entrainement et plus tard essayer d’optimiser les performances, nous pouvons déjà dès le début dire au model d’essayer de trouver le meilleur modèle de prédiction en utilisant des variances des métriques d’influences.
 
 La fonction de caret qui permet cela est trainControl() qui génère les paramètres qui permettent de contrôler comment les modèles optimisés sont créés.  Des options possibles dont des « bootstrap », « K-fold cross-validation », « Leave One Out cross-validation, « Repeated K-fold cross-validation », etc..
 
-
-Dans le projet j’ai choisi de faire l’optimisation avec « CV » qui est « K-fold cross-validation » avec un nombre de « 10 » qui control le nombre de « folds ».
+Dans le projet j’ai choisi de faire l’optimisation avec « CV » qui est « K-fold cross-validation » avec un nombre de « 10 » qui controle le nombre de « folds ».
 
 Vu un assez grand nombre d’échantillons la métrique « Accuracy » a été choisi au lieu de « Kappa » pour la métrique de classification de l’entrainement du modèle. 
 
